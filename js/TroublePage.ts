@@ -17,6 +17,7 @@ class TroublePage implements Page {
                 this.app.showPage('second/1234');
             },
             send : () => {
+                this.playAudio();
             	this.ractive.push("list",
             		{key : 1, value : this.ractive.get("text")})
             	this.ractive.set("text","")
@@ -42,4 +43,11 @@ class TroublePage implements Page {
     	var ansewer = reserveList[Math.floor( Math.random() * reserveList.length + 1 )];
     	return ansewer;
     }
+
+    private playAudio() {
+        var num = Math.floor(Math.random() * 4);
+        var audio = new Audio();
+        audio.src = "./voice/trouble" + num + ".mp3";
+        audio.play();
+    }    
 }

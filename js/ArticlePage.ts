@@ -15,6 +15,7 @@ class ArticlePage implements Page {
             el : '#container',
             template : '#ArticleTemplate',
             sendComment : () => {
+                this.playSendVoice();
                 var comment = this.ractive.get("comment")
 
                 var obj = Kii.bucketWithName("comment").createObject()
@@ -22,7 +23,6 @@ class ArticlePage implements Page {
                 
                 obj.set("comment",comment)
                 obj.save().then((o:KiiObject)=>{
-                    this.playSendVoice();
                     window.history.back()
                 })
             },
@@ -60,6 +60,10 @@ class ArticlePage implements Page {
     }
 
     private playSendVoice() {
+        var num = Math.floor(Math.random() * 3);
+        var audio = new Audio();
+        audio.src = "./voice/post" + num + ".mp3";
+        audio.play();
     }
 
     private playPointVoice() {
