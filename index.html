@@ -150,7 +150,11 @@
   </script>
 
    <script id="TroubleTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">Trouble page</h1>
+    <header class="toolbar">	
+      <img class="back" src="./img/arrow_back.png" on-click="@this.back()">
+      <h1>お悩み相談室</h1>
+    </header>   
+
     <p>{{# list}}
     {{#if key == 1 && value != ""}}
     	<p><img src = "./img/ic_user.png" align="top">{{value}}</p>
