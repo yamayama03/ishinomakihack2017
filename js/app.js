@@ -181,6 +181,9 @@ var ArticlePage = (function () {
             addPoint: function () {
                 _this.playPointVoice();
                 _this.addPoint();
+            },
+            back: function () {
+                window.history.back();
             }
         });
         var obj = KiiObject.objectWithURI("KiiCloud://buckets/anger/objects/" + this.id);
@@ -244,6 +247,9 @@ var TroublePage = (function () {
                 setTimeout(function () {
                     _this.ractive.push("list", { key: 2, value: _this.getAnsewer() });
                 }, 2000);
+            },
+            back: function () {
+                window.history.back();
             }
         });
     };
@@ -290,6 +296,9 @@ var PostPage = (function () {
                     alert("投稿しました");
                     window.history.back();
                 });
+            },
+            back: function () {
+                window.history.back();
             }
         });
     };

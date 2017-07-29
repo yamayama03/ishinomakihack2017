@@ -30,6 +30,9 @@ class ArticlePage implements Page {
                 this.playPointVoice();
                 this.addPoint();
             },
+            back : () => {
+                window.history.back();
+            },
         });
         var obj = KiiObject.objectWithURI("KiiCloud://buckets/anger/objects/"+this.id)
         obj.refresh().then((o:KiiObject)=>{

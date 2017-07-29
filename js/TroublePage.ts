@@ -26,6 +26,9 @@ class TroublePage implements Page {
             			{key : 2, value : this.getAnsewer()})
             	},2000)
             },
+            back : () => {
+                window.history.back();
+            },
         });
     }
     
