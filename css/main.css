@@ -153,7 +153,6 @@ input.comment {
     line-height:5em;
 }
 
-input {
+input.text {
     line-height:20em;
 }
-
