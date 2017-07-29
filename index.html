@@ -78,7 +78,7 @@
                              登録メールアドレス
                          </th>
                          <td>
-                             <input type="text" name="add_user_id" value="" size="24">
+                             <input type="text" name="add_user_id" value={{email}} size="24">
                          </td>
                      </tr>
                      <tr>
@@ -86,24 +86,24 @@
                              パスワード
                          </th>
                          <td>
-                             <input type="password" name="add_password"  value="" size="24">
+                             <input type="password" name="add_password"  value={{password}} size="24">
                          </td>
                      </tr>
                      <tr>
                          <td >
-                             <input type="submit" onClick="" value="登録">
+                             <input type="submit" on-click="@this.showNext()" value="登録">
                          </td>
                      </tr>
              </table>
     </div>
   </script>
 
-   <script id="TimeLineTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">TimeLine page</h1>
+   <script id="ListTemplate" type="text/ractive">
+    <h1 on-click="@this.showNext()">List page</h1>
   </script>
 
-   <script id="NewsTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">News page</h1>
+   <script id="ArticleTemplate" type="text/ractive">
+    <h1 on-click="@this.showNext()">article page</h1>
   </script>
 
    <script id="TroubleTemplate" type="text/ractive">
@@ -124,6 +124,11 @@
                              <input type="text" name="onayami_naiyou" value="">
                          </td>
                          </tr>
+                     <tr>
+                         <td >
+                         <input type="button" onClick="" value="記事を投稿する">
+                         </td >
+                     </tr>
    </script>
 
   <link rel="stylesheet" type="text/css" href="./css/main.css"/>
