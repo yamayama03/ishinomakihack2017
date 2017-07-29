@@ -119,4 +119,11 @@ table td {
     color: #FF99CC;
 }
 
+div.center {
+text-align : center ;
+}
 
+img.trouble_img {
+width=200px ;
+height=auto ;
+}
