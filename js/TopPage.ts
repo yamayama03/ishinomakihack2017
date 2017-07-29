@@ -10,8 +10,14 @@ class TopPage implements Page {
         this.ractive = new Ractive({
             el : '#container',
             template : '#topTemplate',
-            showNext : () => {
-                this.app.showPage('second/1234');
+            showSignup : () => {
+                this.app.showPage("newuser");
+            },
+            newArticle : () => {
+                this.app.showPage("article");
+            },
+            showTrouble : () => {
+                this.app.showPage("trouble");
             },
         });
     }

@@ -7,8 +7,14 @@ var TopPage = (function () {
         this.ractive = new Ractive({
             el: '#container',
             template: '#topTemplate',
-            showNext: function () {
-                _this.app.showPage('second/1234');
+            showSignup: function () {
+                _this.app.showPage("newuser");
+            },
+            newArticle: function () {
+                _this.app.showPage("article");
+            },
+            showTrouble: function () {
+                _this.app.showPage("trouble");
             }
         });
     };
@@ -81,37 +87,37 @@ var NewUserPage = (function () {
     };
     return NewUserPage;
 }());
-var TimeLinePage = (function () {
-    function TimeLinePage(app) {
+var ListPage = (function () {
+    function ListPage(app) {
         this.app = app;
     }
-    TimeLinePage.prototype.onCreate = function () {
+    ListPage.prototype.onCreate = function () {
         var _this = this;
         this.ractive = new Ractive({
             el: '#container',
-            template: '#TimeLineTemplate',
+            template: '#ListTemplate',
             showNext: function () {
                 _this.app.showPage('second/1234');
             }
         });
     };
-    return TimeLinePage;
+    return ListPage;
 }());
-var NewsPage = (function () {
-    function NewsPage(app) {
+var ArticlePage = (function () {
+    function ArticlePage(app) {
         this.app = app;
     }
-    NewsPage.prototype.onCreate = function () {
+    ArticlePage.prototype.onCreate = function () {
         var _this = this;
         this.ractive = new Ractive({
             el: '#container',
-            template: '#NewsTemplate',
+            template: '#ArticleTemplate',
             showNext: function () {
                 _this.app.showPage('second/1234');
             }
         });
     };
-    return NewsPage;
+    return ArticlePage;
 }());
 var TroublePage = (function () {
     function TroublePage(app) {
@@ -176,8 +182,8 @@ var PostPage = (function () {
 /// <reference path="./TopPage.ts"/>
 /// <reference path="./LoginPage.ts"/>
 /// <reference path="./NewUserPage.ts"/>
-/// <reference path="./TimeLinePage.ts"/>
-/// <reference path="./NewsPage.ts"/>
+/// <reference path="./ListPage.ts"/>
+/// <reference path="./ArticlePage.ts"/>
 /// <reference path="./TroublePage.ts"/>
 /// <reference path="./PostPage.ts"/>
 /// <reference path="./Application.ts"/>
@@ -191,10 +197,10 @@ function createRouter(app) {
             "": "top",
             "login": "login",
             "newuser": "newuser",
-            "timeline": "timeline",
-            "news": "news",
-            "trouble": "trouble",
-            "post": "post"
+            "post": "post",
+            "list": "list",
+            "article": "article",
+            "trouble": "trouble"
         },
         top: function () {
             showPage(new TopPage(app));
@@ -205,11 +211,11 @@ function createRouter(app) {
         newuser: function () {
             showPage(new NewUserPage(app));
         },
-        timeline: function () {
-            showPage(new TimeLinePage(app));
+        list: function () {
+            showPage(new ListPage(app));
         },
-        news: function () {
-            showPage(new NewsPage(app));
+        article: function () {
+            showPage(new ArticlePage(app));
         },
         trouble: function () {
             showPage(new TroublePage(app));
