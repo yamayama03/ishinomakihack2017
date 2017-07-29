@@ -38,7 +38,6 @@
      <header class="toolbar">
        
      </header>
-    <h1 on-click="@this.showNext()">login  page</h1>
                      <table>
                      <tr>
                          <th>
@@ -70,7 +69,6 @@
   </script>
 
    <script id="NewUserTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">NewUser page</h1>
         <div align="center">
                      <table>
                      <tr>
@@ -99,21 +97,19 @@
   </script>
 
    <script id="ListTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">List page</h1>
   </script>
 
    <script id="ArticleTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">article page</h1>
     <h2>{{title}}</h2>
     <p>{{text}}</p>
     <p>累計ブラックポイント:{{point}}</p>
     <p>
-    <input type="text" name="comment" value="{{comment}}">
-    <td>
+      <button class="btn2" on-click="@this.addPoint()">ブラックだね</button>
+      <input type="text" name="comment" value="{{comment}}">
       <button class="btn1" on-click="@this.sendComment()">投稿する</button>
     </p>
     <p>
-    <button class="btn2" on-click="@this.addPoint()">ブラックだね</button>
+      <button class="btn1">投稿する</button>
     </p>
 
     <p>コメント一覧</p>
@@ -125,7 +121,7 @@
 
 
    <script id="PostTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">Post page</h1>
+    <h1 text>Post page</h1>
                      <table>
                      <tr>
                          <th>
@@ -154,7 +150,11 @@
    <script id="TroubleTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">Trouble page</h1>
     <p>text{{# list}}
-    	<p>{{.}}</p>
+    {{#if key == 1}}
+    	<p><img src = "./img/ic_user.png">{{value}}</p>
+    {{else}}
+    	<p><img src = "./img/ic_god.png">{{value}}</p>
+    {{/if}}
     	{{/}}</p>
     <textarea cols="横幅" rows="行数" value= "{{text}}"></textarea>
     <button on-click="@this.send()">投稿</button>
