@@ -32,6 +32,9 @@ class TopPage implements Page {
                 localStorage.setItem('token', '');
                 this.ractive.set('loggedIn', false);
             },
+            showArticle : (o:KiiObject) =>{
+                this.app.showPage("article/"+o.getID())
+            }
         });
         var bucket = Kii.bucketWithName("anger")
         var allQuery:KiiQuery = KiiQuery.queryWithClause(null);
