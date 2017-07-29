@@ -94,10 +94,14 @@ var TroublePage = (function () {
     };
     return TroublePage;
 }());
+/// <reference path="./kii.d.ts"/>
+var APP_ID = 'orueuntaxbsi';
+var APP_KEY = 'c681148710d045fe9ad1bc94f4a209b0';
 var Application = (function () {
     function Application() {
     }
     Application.prototype.start = function () {
+        Kii.initializeWithSite(APP_ID, APP_KEY, KiiSite.JP);
     };
     Application.prototype.showPage = function (page) {
         this.router.navigate(page, { trigger: true });
