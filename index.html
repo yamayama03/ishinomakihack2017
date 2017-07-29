@@ -104,6 +104,17 @@
        <h1>{{title}}</h1>
      </header>
     <p>{{text}}</p><br>
+    {{#if point <= 5}}
+        <div class=left><img src = "./img/meter_1.png">{{point}}</div>
+         {{elseif point > 5 && point <= 10}}
+        <div class=left><img src = "./img/meter_2.png">{{point}}</div>
+         {{elseif point > 10 && point <= 15}}
+        <div class=left><img src = "./img/meter_3.png">{{point}}</div>
+         {{elseif point > 15 && point <= 20}}
+        <div class=left><img src = "./img/meter_4.png">{{point}}</div>
+         {{elseif point >= 21}}
+        <div class=left><img src = "./img/meter_5.png">{{point}}</div>
+        {{/if}}
     <p>累計ブラックポイント:{{point}}</p><br>
     <p>
       <button class="btn2" on-click="@this.addPoint()">ブラックだね</button><br><br>
