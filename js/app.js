@@ -140,12 +140,10 @@ var TroublePage = (function () {
             },
             send: function () {
                 _this.ractive.push("list", _this.ractive.get("text"));
+                _this.ractive.set("text", "");
                 setTimeout(function () {
                     _this.ractive.push("list", _this.getAnsewer());
                 }, 2000);
-                setTimeout(function () {
-                    _this.ractive.push("list", _this.getAnsewer());
-                }, 1000);
             }
         });
     };

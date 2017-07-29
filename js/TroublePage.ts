@@ -17,10 +17,9 @@ class TroublePage implements Page {
             },
             send : () => {
             	this.ractive.push("list",this.ractive.get("text"))
+            	this.ractive.set("text","")
             setTimeout(() => {
             	this.ractive.push("list",this.getAnsewer())},2000)
-            setTimeout(() => {
-            	this.ractive.push("list",this.getAnsewer())},1000)
             },
         });
     }
