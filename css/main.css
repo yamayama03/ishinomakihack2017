@@ -46,6 +46,7 @@
 
 .top header {
     positon: relative;
+    height: 32px;
 }
 .top h1 {
     display: inline-block;
