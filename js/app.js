@@ -44,6 +44,13 @@ var TopPage = (function () {
         bucket.executeQuery(allQuery).then(function (v) {
             _this.ractive.set("list", v[1]);
         });
+        var bucket = Kii.bucketWithName("anger");
+        var allQuery = KiiQuery.queryWithClause(null);
+        allQuery.setLimit(3);
+        allQuery.sortByAsc("point");
+        bucket.executeQuery(allQuery).then(function (v) {
+            _this.ractive.set("list2", v[1]);
+        });
     };
     return TopPage;
 }());
@@ -279,7 +286,7 @@ var TroublePage = (function () {
             "そんな上司も漏らしたことあるんだよ、人間だもの",
             "ふんふふ━━（　´_ゝ｀）━━ん"
         ];
-        var ansewer = reserveList[Math.floor(Math.random() * reserveList.length + 1)];
+        var ansewer = reserveList[Math.floor(Math.random() * reserveList.length)];
         return ansewer;
     };
     TroublePage.prototype.playAudio = function () {

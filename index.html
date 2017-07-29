@@ -24,6 +24,10 @@
         {{# list}}
         <div class="list_item line1" on-click="@this.showArticle(.)"> {{get("title")}} ({{get("point")}})</div>
         {{/}}
+          <h2>新着トピック</h2>
+        {{# list2}}
+        <div class="list_item line1" on-click="@this.showArticle(.)"> {{get("title")}} ({{get("point")}})</div>
+        {{/}}
         <button class="button match_width" on-click="@this.newArticle()">悩み投稿</button>
       </section>
       <section class="card">
@@ -157,12 +161,9 @@
                              <input type="text" class="text" value="{{text}}">
                          </td>
                      </tr>
-                     <tr>
-                         <td >
-                             <button on-click="@this.showNext()" >記事投稿</button>
-                         </td>
-                     </tr>
-                     </table>
+                         </table>
+                        <button class="btn1" on-click="@this.showNext()" >記事投稿</button>
+
   </script>
 
    <script id="TroubleTemplate" type="text/ractive">

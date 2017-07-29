@@ -46,5 +46,12 @@ class TopPage implements Page {
         bucket.executeQuery(allQuery).then((v:any[])=>{
             this.ractive.set("list",v[1])
         })
+        var bucket = Kii.bucketWithName("anger")
+        var allQuery:KiiQuery = KiiQuery.queryWithClause(null);
+        allQuery.setLimit(3)
+        allQuery.sortByAsc("point")
+        bucket.executeQuery(allQuery).then((v:any[])=>{
+            this.ractive.set("list2",v[1])
+        })
     }
 }
