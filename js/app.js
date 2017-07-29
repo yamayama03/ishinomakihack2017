@@ -130,6 +130,7 @@ var NewUserPage = (function () {
                     return obj.saveAllFields();
                 }).then(function (o) {
                     alert("成功");
+                    _this.app.showPage("/");
                 })["catch"](function (error) {
                     var theUser = error.target;
                     var errorString = error.message;

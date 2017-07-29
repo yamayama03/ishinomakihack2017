@@ -24,6 +24,7 @@ class NewUserPage implements Page {
                     return obj.saveAllFields();
                 }).then((o:KiiObject)=>{
                     alert("成功")
+                    this.app.showPage("/")
                 }).catch(
                     function(error) {
                     var theUser = error.target;
