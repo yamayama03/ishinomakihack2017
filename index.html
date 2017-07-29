@@ -22,7 +22,7 @@
         {{# list}}
         <div class="list_item line1" on-click="@this.showArticle(.)"> {{get("title")}} ({{get("point")}})</div>
         {{/}}
-        <button class="button match_width" on-click="@this.newArticle()">記事投稿</button>
+        <button class="button match_width" on-click="@this.newArticle()">悩み投稿</button>
       </section>
       <section class="card">
           <div class=center><img on-click="@this.showTrouble()" src="./img/trouble.png" class="trouble_img" /></div>
@@ -122,7 +122,7 @@
    <script id="PostTemplate" type="text/ractive">
      <header class="toolbar">
        <img class="back" src="./img/arrow_back.png" on-click="@this.back()">
-       <h1>投稿</h1>
+       <h1>悩み投稿</h1>
      </header>
                      <table>
                      <tr>
