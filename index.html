@@ -122,6 +122,33 @@
     <p></p>
   </script>
 
+   <script id="PostTemplate" type="text/ractive">
+    <h1 on-click="@this.showNext()">Post page</h1>
+                     <table>
+                     <tr>
+                         <th>
+                             タイトル
+                         </th>
+                         <td>
+                             <input type="text" name="post_title" value="">
+                         </td>
+                     </tr>
+                     <tr>
+                         <th>
+                             本文
+                         </th>
+                         <td>
+                             <input type="password" name="post_text" value="">
+                         </td>
+                     </tr>
+                     <tr>
+                         <td >
+                             <input type="submit" on-click="post_post" value="記事投稿">
+                         </td>
+                     </tr>
+                     </table>
+   </script>
+   
 
   <link rel="stylesheet" type="text/css" href="./css/main.css"/>
   <script src="./js/KiiSDK.min.js"></script>
