@@ -170,7 +170,7 @@ var ArticlePage = (function () {
                 obj.set("parent", _this.id);
                 obj.set("comment", comment);
                 obj.save().then(function (o) {
-                    alert("投稿しました");
+                    _this.playSendVoice();
                     window.history.back();
                 });
             },
@@ -199,9 +199,18 @@ var ArticlePage = (function () {
         this.obj.set("point", this.obj.get("point") + 1);
         this.obj.saveAllFields(null, false).then(function (o) {
             _this.ractive.set('point', o.get("point"));
+            _this.playPointVoice();
         })["catch"](function (e) {
             console.log(e);
         });
+    };
+    ArticlePage.prototype.playSendVoice = function () {
+    };
+    ArticlePage.prototype.playPointVoice = function () {
+        var num = Math.floor(Math.random() * 4);
+        var audio = new Audio();
+        audio.src = "./voice/point" + num + ".mp3";
+        audio.play();
     };
     return ArticlePage;
 }());

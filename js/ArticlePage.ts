@@ -22,7 +22,7 @@ class ArticlePage implements Page {
                 
                 obj.set("comment",comment)
                 obj.save().then((o:KiiObject)=>{
-                    alert("投稿しました")
+                    this.playSendVoice();
                     window.history.back()
                 })
             },
@@ -53,8 +53,19 @@ class ArticlePage implements Page {
         this.obj.set("point", this.obj.get<number>("point") + 1);
         this.obj.saveAllFields(null, false).then((o : KiiObject) => {
             this.ractive.set('point', o.get("point"));
+            this.playPointVoice();
         }).catch((e : any) => {
             console.log(e);
         });
+    }
+
+    private playSendVoice() {
+    }
+
+    private playPointVoice() {
+        var num = Math.floor(Math.random() * 4);
+        var audio = new Audio();
+        audio.src = "./voice/point" + num + ".mp3";
+        audio.play();        
     }
 }
