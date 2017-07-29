@@ -178,6 +178,7 @@ var ArticlePage = (function () {
                 });
             },
             addPoint: function () {
+                _this.playPointVoice();
                 _this.addPoint();
             }
         });
@@ -202,7 +203,6 @@ var ArticlePage = (function () {
         this.obj.set("point", this.obj.get("point") + 1);
         this.obj.saveAllFields(null, false).then(function (o) {
             _this.ractive.set('point', o.get("point"));
-            _this.playPointVoice();
         })["catch"](function (e) {
             console.log(e);
         });
