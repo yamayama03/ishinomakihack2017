@@ -8,7 +8,8 @@ var TopPage = (function () {
             el: '#container',
             template: '#topTemplate',
             data: {
-                loggedIn: (KiiUser.getCurrentUser() != null)
+                loggedIn: (KiiUser.getCurrentUser() != null),
+                list: []
             },
             showSignup: function () {
                 _this.app.showPage("newuser");
@@ -29,6 +30,13 @@ var TopPage = (function () {
                 localStorage.setItem('token', '');
                 _this.ractive.set('loggedIn', false);
             }
+        });
+        var bucket = Kii.bucketWithName("anger");
+        var allQuery = KiiQuery.queryWithClause(null);
+        allQuery.setLimit(5);
+        allQuery.sortByDesc("point");
+        bucket.executeQuery(allQuery).then(function (v) {
+            _this.ractive.set("list", v[1]);
         });
     };
     return TopPage;
