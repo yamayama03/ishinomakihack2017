@@ -122,10 +122,36 @@ var TroublePage = (function () {
         this.ractive = new Ractive({
             el: '#container',
             template: '#TroubleTemplate',
+            data: {
+                list: []
+            },
             showNext: function () {
                 _this.app.showPage('second/1234');
+            },
+            send: function () {
+                _this.ractive.push("list", _this.ractive.get("text"));
+                setTimeout(function () {
+                    _this.ractive.push("list", _this.getAnsewer());
+                }, 2000);
+                setTimeout(function () {
+                    _this.ractive.push("list", _this.getAnsewer());
+                }, 1000);
             }
         });
+    };
+    TroublePage.prototype.getAnsewer = function () {
+        var reserveList = ["そんなやつはうんちだ、うんち以下だ。",
+            "そんなやつはうんちだ、うんち以下だ。",
+            "ふむふむ、ムフムフ♪",
+            "そっか、大変だったね、ところでうんち派？うんこ派？",
+            "うんぴ・うんにょ・うんこ・うんご？",
+            "恥骨ってかわいそうだね、ぜんぜん恥ずかしい骨じゃないのに。恥骨の大変さ考えたことある？",
+            "そうか、頭痛くなるまで悩んだんだね。痛くなったらすぐ屁です",
+            "そんな上司も漏らしたことあるんだよ、人間だもの",
+            "ふんふふ━━（　´_ゝ｀）━━ん"
+        ];
+        var ansewer = reserveList[Math.floor(Math.random() * reserveList.length + 1)];
+        return ansewer;
     };
     return TroublePage;
 }());

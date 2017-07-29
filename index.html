@@ -114,30 +114,14 @@
 
    <script id="TroubleTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">Trouble page</h1>
-                         <table>
-                         <tr>
-                         <th>
-                             お悩みタイトル
-                         </th>
-                         <td>
-                             <input type="text" name="onayami_title" value="">
-                         </td>
-                         </tr>
-                         <tr>
-                         <th>
-                             お悩み内容
-                         </th>
-                         <td>
-                             <input type="text" name="onayami_naiyou" value="">
-                         </td>
-                         </tr>
-                     <tr>
-                         <td >
-                         <input type="button" onClick="" value="記事を投稿する">
-                         </td >
-                     </tr>
-                     <table>
-   </script>
+    <p>text{{# list}}
+    	<p>{{.}}</p>
+    	{{/}}</p>
+    <textarea cols="横幅" rows="行数" value= "{{text}}"></textarea>
+    <button on-click="@this.send()">投稿</button>
+    <p></p>
+  </script>
+
 
   <link rel="stylesheet" type="text/css" href="./css/main.css"/>
   <script src="./js/KiiSDK.min.js"></script>
