@@ -18,7 +18,7 @@ var TopPage = (function () {
                     _this.app.showPage("login");
                 }
                 else {
-                    _this.app.showPage("article");
+                    _this.app.showPage("post");
                 }
             },
             showTrouble: function () {
@@ -210,6 +210,7 @@ var PostPage = (function () {
                 obj.set("point", 0);
                 obj.save().then(function (o) {
                     alert("投稿しました");
+                    window.history.back();
                 });
             }
         });

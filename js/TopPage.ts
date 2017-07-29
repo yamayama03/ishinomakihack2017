@@ -20,7 +20,7 @@ class TopPage implements Page {
                 if (KiiUser.getCurrentUser() == null) {
                     this.app.showPage("login");
                 } else {
-                    this.app.showPage("article");
+                    this.app.showPage("post");
                 }
             },
             showTrouble : () => {
