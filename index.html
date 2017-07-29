@@ -100,7 +100,11 @@
   </script>
 
    <script id="ArticleTemplate" type="text/ractive">
-    <h2>{{title}}</h2>
+    <header class="toolbar">
+      <h2>{{title}}</h2>
+      <img class="back" src="./img/arrow_back.png" on-click="@this.back()">		
+      <h1>{{title}}</h1>		
+    </header>   
     <p>{{text}}</p><br>
     <p>累計ブラックポイント:{{point}}</p><br>
     <p>
