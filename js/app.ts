@@ -36,10 +36,10 @@ function createRouter(app : Application) : any {
         newuser : () => {
             showPage(new NewUserPage(app));
         },
-        timeline : () => {
+        list : () => {
             showPage(new ListPage(app));
         },
-        news : () => {
+        article : () => {
             showPage(new ArticlePage(app));
         },
         trouble : () => {
