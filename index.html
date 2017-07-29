@@ -97,6 +97,14 @@
 
    <script id="ArticleTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">article page</h1>
+    <h2>タイトル</h2>
+    <a>本文</a>
+    <a>記事投稿者ニックネーム</a>
+    <a>累計ブラックポイント</a>
+    <input type="text" name="black_button" value="ブラックだね">
+    <input type="text" name="onayami_title" value="コメント">
+    <input type="text" name="post_button" value="投稿">
+    <a>コメント一覧</a>
   </script>
 
 
@@ -106,6 +114,7 @@
 
    <script id="TroubleTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">Trouble page</h1>
+                         <table>
                          <tr>
                          <th>
                              お悩みタイトル
@@ -127,6 +136,7 @@
                          <input type="button" onClick="" value="記事を投稿する">
                          </td >
                      </tr>
+                     <table>
    </script>
 
   <link rel="stylesheet" type="text/css" href="./css/main.css"/>
