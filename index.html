@@ -21,7 +21,7 @@
       <section class="card">
         <h2>人気ブラック記事</h2>
         {{# list}}
-        <div> {{get("title")}} </div>
+        <div on-click="@this.showArticle(.)"> {{get("title")}} </div>
         {{/}}
         <button class="button match_width" on-click="@this.newArticle()">記事投稿</button>
       </section>
@@ -101,10 +101,9 @@
 
    <script id="ArticleTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">article page</h1>
-    <h2>タイトル</h2>
-    <p>本文</p>
-    <p>記事投稿者ニックネーム</p>
-    <p>累計ブラックポイント</p>
+    <h2>{{title}}</h2>
+    <p>{{text}}</p>
+    <p>累計ブラックポイント:{{point}}</p>
     <input type="text" name="black_button" value="ブラックだね">
     <input type="text" name="onayami_title" value="コメント">
     <input type="text" name="post_button" value="投稿">

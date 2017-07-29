@@ -29,6 +29,9 @@ var TopPage = (function () {
                 KiiUser.logOut();
                 localStorage.setItem('token', '');
                 _this.ractive.set('loggedIn', false);
+            },
+            showArticle: function (o) {
+                _this.app.showPage("article/" + o.getID());
             }
         });
         var bucket = Kii.bucketWithName("anger");
@@ -141,9 +144,11 @@ var ListPage = (function () {
     };
     return ListPage;
 }());
+/// <reference path="./kii.d.ts"/>
 var ArticlePage = (function () {
-    function ArticlePage(app) {
+    function ArticlePage(app, id) {
         this.app = app;
+        this.id = id;
     }
     ArticlePage.prototype.onCreate = function () {
         var _this = this;
@@ -153,6 +158,13 @@ var ArticlePage = (function () {
             showNext: function () {
                 _this.app.showPage('second/1234');
             }
+        });
+        var obj = KiiObject.objectWithURI("KiiCloud://buckets/anger/objects/" + this.id);
+        obj.refresh().then(function (o) {
+            var title = o.get("title");
+            var text = o.get("text");
+            var point = o.get("point");
+            _this.ractive.set({ title: title, text: text, point: point });
         });
     };
     return ArticlePage;
@@ -247,7 +259,7 @@ function createRouter(app) {
             "newuser": "newuser",
             "post": "post",
             "list": "list",
-            "article": "article",
+            "article(/:id)": "article",
             "trouble": "trouble"
         },
         top: function () {
@@ -262,8 +274,8 @@ function createRouter(app) {
         list: function () {
             showPage(new ListPage(app));
         },
-        article: function () {
-            showPage(new ArticlePage(app));
+        article: function (id) {
+            showPage(new ArticlePage(app, id));
         },
         trouble: function () {
             showPage(new TroublePage(app));

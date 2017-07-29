@@ -25,7 +25,7 @@ function createRouter(app : Application) : any {
             "newuser" : "newuser",
             "post" : "post",
             "list" : "list",
-            "article" : "article",
+            "article(/:id)" : "article",
             "trouble" : "trouble"
         },
         
@@ -41,8 +41,8 @@ function createRouter(app : Application) : any {
         list : () => {
             showPage(new ListPage(app));
         },
-        article : () => {
-            showPage(new ArticlePage(app));
+        article : (id:string) => {
+            showPage(new ArticlePage(app,id));
         },
         trouble : () => {
             showPage(new TroublePage(app));
