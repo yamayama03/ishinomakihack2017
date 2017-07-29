@@ -8,33 +8,26 @@
 <body>
   <section id="container"></section>
   <script id="topTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">Top page</h1>
-    <div align="center">
-    <tr>
-    <td>
-    <img src="" value="ロゴ"/>
-    </td>
-    <td>
-    <input type="submit" onClick="" value="新規登録">
-    </td>
-    <td>
-    <input type="submit" onClick="" value="人気ブラック記事">
-    </td>
-    <td>
-    <input type="submit" onClick="" value="記事投稿">
-    </td>
-    <td>
-    <input type="submit" onClick="" value="お悩み相談室">
-    </td>
-    <td>
-    <img src="" value="お悩み画像"/>
-    </td>
-    <td>
-    <input type="submit" onClick="" value="悩みを打ち明ける">
-    </td>
-    </tr>
-    </div>
-    </script>
+    <section class="top">
+      <header>
+        <h1 on-click="@this.showNext()">Top page</h1>
+        <label on-click="@this.showSignup()">新規登録</label>
+      </header>
+      <img src="" value="ロゴ"/>
+      <section>
+        <h2>人気ブラック記事</h2>
+      </section>
+      
+      <section>
+        <button on-click="@this.newArticle()">記事投稿</button>
+      </section>
+
+      <section>
+        <h2>お悩み相談室</h2>
+        <button on-click="@this.showTrouble()">悩みを打ち明ける</button>
+      </section>
+    </section>
+  </script>
     
     
    <script id="LoginTemplate" type="text/ractive">
