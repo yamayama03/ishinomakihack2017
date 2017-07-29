@@ -145,18 +145,19 @@
 
    <script id="TroubleTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">Trouble page</h1>
-    <p>貴方のお悩みを教えてね♪{{# list}}
+    <p>{{# list}}
     {{#if key == 1 && value != ""}}
     	<p><img src = "./img/ic_user.png" align="top">{{value}}</p>
     {{elseif key == 2 && value != ""}}
     	<p><img src = "./img/ic_god.png" align="top" align="right">{{value}}</p>
+    {{elseif key == 2 && value == ""}}
+    	<p><img src = "./img/ic_god.png" align="top">信じる者は救われる</p>
     {{else}}
-    	
     {{/if}}
     	{{/}}</p>
     <div>
     <br>
-    <textarea cols="横幅" rows="行数" value= "{{text}}"></textarea>
+    <textarea cols="20" rows="5" value= "{{text}}"></textarea>
     <button on-click="@this.send()">投稿</button>
     </div>
     <p></p>
