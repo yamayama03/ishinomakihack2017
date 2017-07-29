@@ -15,6 +15,21 @@ var TopPage = (function () {
     return TopPage;
 }());
 /// <reference path="./kii.d.ts"/>
+var APP_ID = 'orueuntaxbsi';
+var APP_KEY = 'c681148710d045fe9ad1bc94f4a209b0';
+var Application = (function () {
+    function Application() {
+    }
+    Application.prototype.start = function () {
+        Kii.initializeWithSite(APP_ID, APP_KEY, KiiSite.JP);
+    };
+    Application.prototype.showPage = function (page) {
+        this.router.navigate(page, { trigger: true });
+    };
+    return Application;
+}());
+/// <reference path="./kii.d.ts"/>
+/// <reference path="./Application.ts"/>
 var LoginPage = (function () {
     function LoginPage(app) {
         this.app = app;
@@ -29,6 +44,7 @@ var LoginPage = (function () {
                 var password = _this.ractive.get("password");
                 KiiUser.authenticate(email, password).then(function (theUser) {
                     alert("ログインしました");
+                    _this.app.showPage("newuser");
                 })["catch"](function (error) {
                     var theUser = error.target;
                     var errorString = error.message;
@@ -113,19 +129,21 @@ var TroublePage = (function () {
     };
     return TroublePage;
 }());
-/// <reference path="./kii.d.ts"/>
-var APP_ID = 'orueuntaxbsi';
-var APP_KEY = 'c681148710d045fe9ad1bc94f4a209b0';
-var Application = (function () {
-    function Application() {
+var PostPage = (function () {
+    function PostPage(app) {
+        this.app = app;
     }
-    Application.prototype.start = function () {
-        Kii.initializeWithSite(APP_ID, APP_KEY, KiiSite.JP);
+    PostPage.prototype.onCreate = function () {
+        var _this = this;
+        this.ractive = new Ractive({
+            el: '#container',
+            template: '#PostTemplate',
+            showNext: function () {
+                _this.app.showPage('second/1234');
+            }
+        });
     };
-    Application.prototype.showPage = function (page) {
-        this.router.navigate(page, { trigger: true });
-    };
-    return Application;
+    return PostPage;
 }());
 /// <reference path="./ractive.d.ts"/>
 /// <reference path="./Page.ts"/>
@@ -135,6 +153,7 @@ var Application = (function () {
 /// <reference path="./TimeLinePage.ts"/>
 /// <reference path="./NewsPage.ts"/>
 /// <reference path="./TroublePage.ts"/>
+/// <reference path="./PostPage.ts"/>
 /// <reference path="./Application.ts"/>
 function createRouter(app) {
     var showPage = function (p) {
@@ -148,7 +167,8 @@ function createRouter(app) {
             "newuser": "newuser",
             "timeline": "timeline",
             "news": "news",
-            "trouble": "trouble"
+            "trouble": "trouble",
+            "post": "post"
         },
         top: function () {
             showPage(new TopPage(app));
@@ -167,6 +187,9 @@ function createRouter(app) {
         },
         trouble: function () {
             showPage(new TroublePage(app));
+        },
+        post: function () {
+            showPage(new PostPage(app));
         }
     });
 }
