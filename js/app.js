@@ -7,20 +7,34 @@ var TopPage = (function () {
         this.ractive = new Ractive({
             el: '#container',
             template: '#topTemplate',
+            data: {
+                loggedIn: (KiiUser.getCurrentUser() != null)
+            },
             showSignup: function () {
                 _this.app.showPage("newuser");
             },
             newArticle: function () {
-                _this.app.showPage("article");
+                if (KiiUser.getCurrentUser() == null) {
+                    _this.app.showPage("login");
+                }
+                else {
+                    _this.app.showPage("article");
+                }
             },
             showTrouble: function () {
                 _this.app.showPage("trouble");
+            },
+            logout: function () {
+                KiiUser.logOut();
+                localStorage.setItem('token', '');
+                _this.ractive.set('loggedIn', false);
             }
         });
     };
     return TopPage;
 }());
 /// <reference path="./kii.d.ts"/>
+/// <reference path="./es6-promise.d.ts"/>
 var APP_ID = 'orueuntaxbsi';
 var APP_KEY = 'c681148710d045fe9ad1bc94f4a209b0';
 var Application = (function () {
@@ -28,6 +42,16 @@ var Application = (function () {
     }
     Application.prototype.start = function () {
         Kii.initializeWithSite(APP_ID, APP_KEY, KiiSite.JP);
+        var token = localStorage.getItem('token');
+        if (token != null && token.length > 0) {
+            // restore
+            return KiiUser.authenticateWithToken(token).then(function (u) {
+                return Promise.resolve(true);
+            });
+        }
+        else {
+            return Promise.resolve(true);
+        }
     };
     Application.prototype.showPage = function (page) {
         this.router.navigate(page, { trigger: true });
@@ -49,6 +73,7 @@ var LoginPage = (function () {
                 var email = _this.ractive.get("email");
                 var password = _this.ractive.get("password");
                 KiiUser.authenticate(email, password).then(function (theUser) {
+                    localStorage.setItem('token', theUser.getAccessToken());
                     alert("ログインしました");
                     _this.app.showPage("newuser");
                 })["catch"](function (error) {
@@ -76,6 +101,7 @@ var NewUserPage = (function () {
                 var password = _this.ractive.get("password");
                 var user = KiiUser.userWithEmailAddress(email, password);
                 user.register().then(function (theUser) {
+                    localStorage.setItem('token', theUser.getAccessToken());
                     var obj = KiiObject.objectWithURI("kiicloud://buckets/user/objects/" + theUser.getID());
                     obj.set("point", 0);
                     return obj.saveAllFields();
@@ -231,8 +257,9 @@ function createRouter(app) {
 }
 $(function () {
     var app = new Application();
-    app.start();
-    var AppRouter = createRouter(app);
-    app.router = new AppRouter();
-    Backbone.history.start();
+    app.start().then(function (b) {
+        var AppRouter = createRouter(app);
+        app.router = new AppRouter();
+        Backbone.history.start();
+    });
 });
