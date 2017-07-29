@@ -1,3 +1,4 @@
+/// <reference path="./kii.d.ts"/>
 class PostPage implements Page {
     app : Application;
     ractive : Ractive;
@@ -11,7 +12,17 @@ class PostPage implements Page {
             el : '#container',
             template : '#PostTemplate',
             showNext : () => {
-                this.app.showPage('second/1234');
+                var title = this.ractive.get("title");
+                var text = this.ractive.get("text")
+
+                var obj=Kii.bucketWithName("anger").createObject()
+
+                obj.set("title",title)
+                obj.set("text",text)
+                obj.set("point",0)
+                obj.save().then((o:KiiObject)=>{
+                    alert("投稿しました")
+                })
             },
         });
     }

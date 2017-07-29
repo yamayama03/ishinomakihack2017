@@ -19,7 +19,7 @@ class LoginPage implements Page {
                 KiiUser.authenticate(email, password).then(
                 (theUser : KiiUser) => {
                     alert("ログインしました")
-                    this.app.showPage("newuser")
+                    this.app.showPage("/")
                 }
                 ).catch(
                     function(error) {
