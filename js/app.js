@@ -169,8 +169,11 @@ var ArticlePage = (function () {
             el: '#container',
             template: '#ArticleTemplate',
             sendComment: function () {
-                _this.playSendVoice();
                 var comment = _this.ractive.get("comment");
+                if (comment.trim().length == 0) {
+                    return false;
+                }
+                _this.playSendVoice();
                 var obj = Kii.bucketWithName("comment").createObject();
                 obj.set("parent", _this.id);
                 obj.set("comment", comment);
@@ -288,6 +291,13 @@ var PostPage = (function () {
             showNext: function () {
                 var title = _this.ractive.get("title");
                 var text = _this.ractive.get("text");
+                // input check
+                if (title.trim().length == 0) {
+                    return false;
+                }
+                if (text.trim().length == 0) {
+                    return false;
+                }
                 var obj = Kii.bucketWithName("anger").createObject();
                 obj.set("title", title);
                 obj.set("text", text);
