@@ -19,10 +19,9 @@ class LoginPage implements Page {
                 var email = this.ractive.get("email");
                 var password = this.ractive.get("password")
 
-                KiiUser.authenticate(email, password).then(
-                    (theUser : KiiUser) => {
+                KiiUser.authenticate(email, password).then((theUser : KiiUser) => {
                     localStorage.setItem('token', theUser.getAccessToken());
-                    alert("ログインしました")
+                    this.playAudio();
                     this.app.showPage("/")
                 }
                 ).catch(
@@ -37,5 +36,12 @@ class LoginPage implements Page {
                 window.history.back();
             },
         });
+    }
+
+    private playAudio() {
+        var num = Math.floor(Math.random() * 2);
+        var audio = new Audio();
+        audio.src = "./voice/login" + num + ".mp3";
+        audio.play();
     }
 }
