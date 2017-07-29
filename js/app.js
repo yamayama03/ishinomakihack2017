@@ -7,20 +7,45 @@ var TopPage = (function () {
         this.ractive = new Ractive({
             el: '#container',
             template: '#topTemplate',
+            data: {
+                loggedIn: (KiiUser.getCurrentUser() != null),
+                list: []
+            },
             showSignup: function () {
                 _this.app.showPage("newuser");
             },
             newArticle: function () {
-                _this.app.showPage("article");
+                if (KiiUser.getCurrentUser() == null) {
+                    _this.app.showPage("login");
+                }
+                else {
+                    _this.app.showPage("post");
+                }
             },
             showTrouble: function () {
                 _this.app.showPage("trouble");
+            },
+            logout: function () {
+                KiiUser.logOut();
+                localStorage.setItem('token', '');
+                _this.ractive.set('loggedIn', false);
+            },
+            showArticle: function (o) {
+                _this.app.showPage("article/" + o.getID());
             }
+        });
+        var bucket = Kii.bucketWithName("anger");
+        var allQuery = KiiQuery.queryWithClause(null);
+        allQuery.setLimit(5);
+        allQuery.sortByDesc("point");
+        bucket.executeQuery(allQuery).then(function (v) {
+            _this.ractive.set("list", v[1]);
         });
     };
     return TopPage;
 }());
 /// <reference path="./kii.d.ts"/>
+/// <reference path="./es6-promise.d.ts"/>
 var APP_ID = 'orueuntaxbsi';
 var APP_KEY = 'c681148710d045fe9ad1bc94f4a209b0';
 var Application = (function () {
@@ -28,6 +53,16 @@ var Application = (function () {
     }
     Application.prototype.start = function () {
         Kii.initializeWithSite(APP_ID, APP_KEY, KiiSite.JP);
+        var token = localStorage.getItem('token');
+        if (token != null && token.length > 0) {
+            // restore
+            return KiiUser.authenticateWithToken(token).then(function (u) {
+                return Promise.resolve(true);
+            });
+        }
+        else {
+            return Promise.resolve(true);
+        }
     };
     Application.prototype.showPage = function (page) {
         this.router.navigate(page, { trigger: true });
@@ -49,8 +84,9 @@ var LoginPage = (function () {
                 var email = _this.ractive.get("email");
                 var password = _this.ractive.get("password");
                 KiiUser.authenticate(email, password).then(function (theUser) {
+                    localStorage.setItem('token', theUser.getAccessToken());
                     alert("ログインしました");
-                    _this.app.showPage("newuser");
+                    _this.app.showPage("/");
                 })["catch"](function (error) {
                     var theUser = error.target;
                     var errorString = error.message;
@@ -76,6 +112,11 @@ var NewUserPage = (function () {
                 var password = _this.ractive.get("password");
                 var user = KiiUser.userWithEmailAddress(email, password);
                 user.register().then(function (theUser) {
+                    localStorage.setItem('token', theUser.getAccessToken());
+                    var obj = KiiObject.objectWithURI("kiicloud://buckets/user/objects/" + theUser.getID());
+                    obj.set("point", 0);
+                    return obj.saveAllFields();
+                }).then(function (o) {
                     alert("成功");
                 })["catch"](function (error) {
                     var theUser = error.target;
@@ -103,9 +144,11 @@ var ListPage = (function () {
     };
     return ListPage;
 }());
+/// <reference path="./kii.d.ts"/>
 var ArticlePage = (function () {
-    function ArticlePage(app) {
+    function ArticlePage(app, id) {
         this.app = app;
+        this.id = id;
     }
     ArticlePage.prototype.onCreate = function () {
         var _this = this;
@@ -114,7 +157,27 @@ var ArticlePage = (function () {
             template: '#ArticleTemplate',
             showNext: function () {
                 _this.app.showPage('second/1234');
+            },
+            addPoint: function () {
+                _this.addPoint();
             }
+        });
+        var obj = KiiObject.objectWithURI("KiiCloud://buckets/anger/objects/" + this.id);
+        obj.refresh().then(function (o) {
+            _this.obj = o;
+            var title = o.get("title");
+            var text = o.get("text");
+            var point = o.get("point");
+            _this.ractive.set({ title: title, text: text, point: point });
+        });
+    };
+    ArticlePage.prototype.addPoint = function () {
+        var _this = this;
+        this.obj.set("point", this.obj.get("point") + 1);
+        this.obj.saveAllFields(null, false).then(function (o) {
+            _this.ractive.set('point', o.get("point"));
+        })["catch"](function (e) {
+            console.log(e);
         });
     };
     return ArticlePage;
@@ -161,6 +224,7 @@ var TroublePage = (function () {
     };
     return TroublePage;
 }());
+/// <reference path="./kii.d.ts"/>
 var PostPage = (function () {
     function PostPage(app) {
         this.app = app;
@@ -171,7 +235,16 @@ var PostPage = (function () {
             el: '#container',
             template: '#PostTemplate',
             showNext: function () {
-                _this.app.showPage('second/1234');
+                var title = _this.ractive.get("title");
+                var text = _this.ractive.get("text");
+                var obj = Kii.bucketWithName("anger").createObject();
+                obj.set("title", title);
+                obj.set("text", text);
+                obj.set("point", 0);
+                obj.save().then(function (o) {
+                    alert("投稿しました");
+                    window.history.back();
+                });
             }
         });
     };
@@ -199,7 +272,7 @@ function createRouter(app) {
             "newuser": "newuser",
             "post": "post",
             "list": "list",
-            "article": "article",
+            "article(/:id)": "article",
             "trouble": "trouble"
         },
         top: function () {
@@ -214,8 +287,8 @@ function createRouter(app) {
         list: function () {
             showPage(new ListPage(app));
         },
-        article: function () {
-            showPage(new ArticlePage(app));
+        article: function (id) {
+            showPage(new ArticlePage(app, id));
         },
         trouble: function () {
             showPage(new TroublePage(app));
@@ -227,8 +300,9 @@ function createRouter(app) {
 }
 $(function () {
     var app = new Application();
-    app.start();
-    var AppRouter = createRouter(app);
-    app.router = new AppRouter();
-    Backbone.history.start();
+    app.start().then(function (b) {
+        var AppRouter = createRouter(app);
+        app.router = new AppRouter();
+        Backbone.history.start();
+    });
 });
