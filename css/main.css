@@ -66,6 +66,23 @@
     margin-bottom: 16px;
 }
 
+.trouble_talk img {
+    display: inline-block;
+}
+
+.trouble_talk .text {
+    display: inline-block;
+    width: calc(100% - 64px);
+    vertical-align: top;
+}
+
+.trouble_talk .text_right {
+    display: inline-block;
+    width: calc(100% - 64px);
+    vertical-align: top;
+    text-align: right;
+}
+
 
 
 table {
