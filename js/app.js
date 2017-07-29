@@ -14,6 +14,7 @@ var TopPage = (function () {
     };
     return TopPage;
 }());
+/// <reference path="./kii.d.ts"/>
 var LoginPage = (function () {
     function LoginPage(app) {
         this.app = app;
@@ -24,7 +25,15 @@ var LoginPage = (function () {
             el: '#container',
             template: '#LoginTemplate',
             showNext: function () {
-                _this.app.showPage('second/1234');
+                var email = _this.ractive.get("email");
+                var password = _this.ractive.get("password");
+                KiiUser.authenticate(email, password).then(function (theUser) {
+                    alert("ログインしました");
+                })["catch"](function (error) {
+                    var theUser = error.target;
+                    var errorString = error.message;
+                    alert("ログイン失敗");
+                });
             }
         });
     };

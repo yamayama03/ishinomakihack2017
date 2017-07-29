@@ -14,7 +14,6 @@ class NewUserPage implements Page {
             showNext : () => {
                 var email = this.ractive.get("email");
                 var password = this.ractive.get("password");
-                
 
                 var user = KiiUser.userWithEmailAddress(email, password);
 
