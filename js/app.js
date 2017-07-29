@@ -165,9 +165,6 @@ var ArticlePage = (function () {
                     window.history.back();
                 });
             },
-            showNext: function () {
-                _this.app.showPage('second/1234');
-            },
             addPoint: function () {
                 _this.addPoint();
             }
