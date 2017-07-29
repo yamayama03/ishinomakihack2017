@@ -35,3 +35,50 @@ table td {
 	border: 3px solid #ff00ff;
 }
 
+.btn1 {
+    width:100px;
+    height:50px;
+    background-color: #FF99CC;
+    box-shadow: 2px 2px 3px 1px #CC66FF;
+    -moz-box-shadow: 2px 2px 3px 1px #CC66FF;
+    -webkit-box-shadow: 2px 2px 3px 1px #CC66FF;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    padding: 5px 10px;
+    text-shadow: 1px 1px 2px #CC3333;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.btn1:active {
+    background-color: #FFCCFF;
+    padding: 5px 10px;
+    color: #FF99CC;
+}
+
+.btn2 {
+    width:100px;
+    height:50px;
+    background-color: #000;
+    box-shadow: 2px 2px 3px 1px #CC66FF;
+    -moz-box-shadow: 2px 2px 3px 1px #CC66FF;
+    -webkit-box-shadow: 2px 2px 3px 1px #CC66FF;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #fff;
+    padding: 5px 10px;
+    text-shadow: 1px 1px 2px #CC3333;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.btn2:active {
+    background-color: #333;
+    padding: 5px 10px;
+    color: #FF99CC;
+}
