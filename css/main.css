@@ -46,6 +46,7 @@
 
 .top header {
     positon: relative;
+    height: 32px;
 }
 .top h1 {
     display: inline-block;
@@ -88,7 +89,6 @@ table td {
 }
 
 .btn1 {
-    width:100px;
     height:50px;
     background-color: #FF99CC;
     box-shadow: 2px 2px 3px 1px #CC66FF;
@@ -112,7 +112,7 @@ table td {
 }
 
 .btn2 {
-    width:100px;
+    margin-left: 4px;
     height:50px;
     background-color: #000;
     box-shadow: 2px 2px 3px 1px #CC66FF;
@@ -136,14 +136,23 @@ table td {
 }
 
 div.center {
-text-align : center ;
+    text-align : center ;
+}
+
+.top .trouble_img {
+    margin-left: -16px;
+}
+
+img.trouble_img {
+    width=200px ;
+    height=auto ;
 }
 
 input.comment {
-line-height:5em;
+    line-height:5em;
 }
 
 input {
-line-height:20em;
+    line-height:20em;
 }
 
