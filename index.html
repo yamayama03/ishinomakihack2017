@@ -8,31 +8,26 @@
 <body>
   <section id="container"></section>
   <script id="topTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">Top page</h1>
-    <div align="center">
-    <td>
-    <img src="" value="ロゴ"/>
-    </td>
-    <td>
-    <input type="submit" onClick="" value="新規登録">
-    </td>
-    <td>
-    <input type="submit" onClick="" value="人気ブラック記事">
-    </td>
-    <td>
-    <input type="submit" onClick="" value="記事投稿">
-    </td>
-    <td>
-    <input type="submit" onClick="" value="お悩み相談室">
-    </td>
-    <td>
-    <img >value="お悩み画像"</img>
-    </td>
-    <td>
-    <input type="submit" onClick="" value="悩みを打ち明ける">
-    </td>
-    </tr>
-    </script>
+    <section class="top">
+      <header>
+        <h1 on-click="@this.showNext()">Top page</h1>
+        <label on-click="@this.showSignup()">新規登録</label>
+      </header>
+      <img src="" value="ロゴ"/>
+      <section>
+        <h2>人気ブラック記事</h2>
+      </section>
+      
+      <section>
+        <button on-click="@this.newArticle()">記事投稿</button>
+      </section>
+
+      <section>
+        <h2>お悩み相談室</h2>
+        <button on-click="@this.showTrouble()">悩みを打ち明ける</button>
+      </section>
+    </section>
+  </script>
     
     
    <script id="LoginTemplate" type="text/ractive">
@@ -96,12 +91,12 @@
     </div>
   </script>
 
-   <script id="TimeLineTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">TimeLine page</h1>
+   <script id="ListTemplate" type="text/ractive">
+    <h1 on-click="@this.showNext()">List page</h1>
   </script>
 
-   <script id="NewsTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">News page</h1>
+   <script id="ArticleTemplate" type="text/ractive">
+    <h1 on-click="@this.showNext()">article page</h1>
   </script>
 
 
@@ -127,6 +122,11 @@
                              <input type="text" name="onayami_naiyou" value="">
                          </td>
                          </tr>
+                     <tr>
+                         <td >
+                         <input type="button" onClick="" value="記事を投稿する">
+                         </td >
+                     </tr>
    </script>
 
   <link rel="stylesheet" type="text/css" href="./css/main.css"/>

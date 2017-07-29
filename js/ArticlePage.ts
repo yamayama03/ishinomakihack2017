@@ -1,4 +1,4 @@
-class NewsPage implements Page {
+class ArticlePage implements Page {
     app : Application;
     ractive : Ractive;
     
@@ -9,7 +9,7 @@ class NewsPage implements Page {
     onCreate() {
         this.ractive = new Ractive({
             el : '#container',
-            template : '#NewsTemplate',
+            template : '#ArticleTemplate',
             showNext : () => {
                 this.app.showPage('second/1234');
             },

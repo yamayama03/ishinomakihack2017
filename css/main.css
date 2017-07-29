@@ -2,3 +2,15 @@
     margin : 0;
     padding : 0;
 }
+
+.top header {
+    positon: relative;
+}
+.top h1 {
+    display: inline-block;
+}
+.top label {
+    position: absolute;
+    right: 16px;
+}
+
