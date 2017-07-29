@@ -23,7 +23,6 @@ function createRouter(app : Application) : any {
             "" : "top",
             "login" : "login",
             "newuser" : "newuser",
-            "trouble" : "trouble",
             "post" : "post",
             "list" : "list",
             "article" : "article",
