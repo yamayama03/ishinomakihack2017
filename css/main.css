@@ -3,6 +3,22 @@
     padding : 0;
 }
 
+.card {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);    
+}
+
+.button {
+    background-color: #4285f4;
+    border-style: none;
+    color : white;
+    padding: 4px 8px;
+    margin: 4px;
+}
+
+.match_width {
+    width : calc(100% - 8px);
+}
+
 .top header {
     positon: relative;
 }
@@ -13,6 +29,17 @@
     position: absolute;
     right: 16px;
 }
+.top .card {
+    padding-top: 24px;    
+    padding-left: 16px;
+    padding-right: 16px;
+}
+.top .card h2 {
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+
 
 table {
 	border-collapse: collapse;
@@ -82,3 +109,5 @@ table td {
     padding: 5px 10px;
     color: #FF99CC;
 }
+
+
