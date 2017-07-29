@@ -42,10 +42,10 @@
                      <table>
                      <tr>
                          <th>
-                             ユーザID
+                             E-MAIL
                          </th>
                          <td>
-                             <input type="text" name="user_id" value="">
+                             <input type="text" name="user_id" value="{{email}}">
                          </td>
                      </tr>
                      <tr>
@@ -53,17 +53,17 @@
                              パスワード
                          </th>
                          <td>
-                             <input type="password" name="password" value="">
+                             <input type="password" name="password" value="{{password}}">
                          </td>
                      </tr>
                      <tr>
                          <td >
-                             <input type="submit" onClick="" value="ログイン">
+                             <button on-click="@this.showNext()">login</button>
                          </td>
                      </tr>
                      <tr>
                          <td >
-                         <input type="button" onClick="" value="新規登録">
+                         <input type="button" on-Click="" value="新規登録">
                          </td >
                      </tr>
              </table>
@@ -104,10 +104,19 @@
 
    <script id="ArticleTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">article page</h1>
+    <h2>タイトル</h2>
+    <a>本文</a>
+    <a>記事投稿者ニックネーム</a>
+    <a>累計ブラックポイント</a>
+    <input type="text" name="black_button" value="ブラックだね">
+    <input type="text" name="onayami_title" value="コメント">
+    <input type="text" name="post_button" value="投稿">
+    <a>コメント一覧</a>
   </script>
 
    <script id="TroubleTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">Trouble page</h1>
+                         <table>
                          <tr>
                          <th>
                              お悩みタイトル
@@ -129,6 +138,7 @@
                          <input type="button" onClick="" value="記事を投稿する">
                          </td >
                      </tr>
+                     <table>
    </script>
 
   <link rel="stylesheet" type="text/css" href="./css/main.css"/>
