@@ -105,15 +105,16 @@
      </header>
     <p>{{text}}</p><br>
     <p>累計ブラックポイント:{{point}}</p><br>
-    <p>
-      <button class="btn2" on-click="@this.addPoint()">ブラックだね</button><br><br>
+    <div>
+      <button class="btn2 match_width" on-click="@this.addPoint()">ブラックだね</button><br><br>
+      <h2>コメント</h2>
       <input type="text" name="comment" value="{{comment}}"><br><br>
-      <button class="btn1" on-click="@this.sendComment()">投稿する</button><br><br>
-    </p>
+      <button class="btn1" on-click="@this.sendComment()">コメントする</button><br><br>
+    </div>
     <h2>コメント一覧</h2><br>
      {{# list}}
         <div class="list_item line1"> {{get("comment")}} </div>
-        {{/}}
+     {{/}}
     
   </script>
 
