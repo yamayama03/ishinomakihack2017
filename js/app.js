@@ -155,8 +155,15 @@ var ArticlePage = (function () {
         this.ractive = new Ractive({
             el: '#container',
             template: '#ArticleTemplate',
-            showNext: function () {
-                _this.app.showPage('second/1234');
+            sendComment: function () {
+                var comment = _this.ractive.get("comment");
+                var obj = Kii.bucketWithName("comment").createObject();
+                obj.set("parent", _this.id);
+                obj.set("comment", comment);
+                obj.save().then(function (o) {
+                    alert("投稿しました");
+                    window.history.back();
+                });
             },
             addPoint: function () {
                 _this.addPoint();
@@ -169,6 +176,13 @@ var ArticlePage = (function () {
             var text = o.get("text");
             var point = o.get("point");
             _this.ractive.set({ title: title, text: text, point: point });
+        });
+        obj = KiiObject.objectWithURI("KiiCloud://buckets/comment/objects/");
+        var bucket = Kii.bucketWithName("comment");
+        var allQuery = KiiQuery.queryWithClause(KiiClause.equals("parent", this.id));
+        allQuery.sortByDesc("_created");
+        bucket.executeQuery(allQuery).then(function (v) {
+            _this.ractive.set("list", v[1]);
         });
     };
     ArticlePage.prototype.addPoint = function () {
@@ -192,19 +206,17 @@ var TroublePage = (function () {
             el: '#container',
             template: '#TroubleTemplate',
             data: {
-                list: []
+                list: [{ key: 1, value: "" }, { key: 2, value: "" }]
             },
             showNext: function () {
                 _this.app.showPage('second/1234');
             },
             send: function () {
-                _this.ractive.push("list", _this.ractive.get("text"));
+                _this.ractive.push("list", { key: 1, value: _this.ractive.get("text") });
+                _this.ractive.set("text", "");
                 setTimeout(function () {
-                    _this.ractive.push("list", _this.getAnsewer());
+                    _this.ractive.push("list", { key: 2, value: _this.getAnsewer() });
                 }, 2000);
-                setTimeout(function () {
-                    _this.ractive.push("list", _this.getAnsewer());
-                }, 1000);
             }
         });
     };
