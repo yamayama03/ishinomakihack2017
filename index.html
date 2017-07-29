@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title></title>
 </head>
 <body>
@@ -9,8 +10,6 @@
   <script id="topTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">Top page</h1>
   </script>
-    <h1 on-click="@this.showNext()">トップページ</h1>
-    </script>
     <div align="center">
     <td>
     <img >value="ロゴ"</img>
@@ -33,16 +32,45 @@
     <input type="submit" onClick="" value="悩みを打ち明ける">
     </td>
     </tr>
+    </script>
     
     
    <script id="LoginTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">login  page</h1>
+                     <table>
+                     <tr>
+                         <th>
+                             ユーザID
+                         </th>
+                         <td>
+                             <input type="text" name="user_id" value="">
+                         </td>
+                     </tr>
+                     <tr>
+                         <th>
+                             パスワード
+                         </th>
+                         <td>
+                             <input type="password" name="password" value="">
+                         </td>
+                     </tr>
+                     <tr>
+                         <td >
+                             <input type="submit" onClick="" value="ログイン">
+                         </td>
+                     </tr>
+                     <tr>
+                         <td >
+                         <input type="button" onClick="" value="新規登録">
+                         </td >
+                     </tr>
+             </table>
   </script>
 
    <script id="NewUserTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">NewUser page</h1>
         <div align="center">
-                     <table border="0">
+                     <table>
                      <tr>
                          <th>
                              登録メールアドレス
@@ -78,7 +106,23 @@
 
    <script id="TroubleTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">Trouble page</h1>
-  </script>
+                         <tr>
+                         <th>
+                             お悩みタイトル
+                         </th>
+                         <td>
+                             <input type="text" name="onayami_title" value="">
+                         </td>
+                         </tr>
+                         <tr>
+                         <th>
+                             お悩み内容
+                         </th>
+                         <td>
+                             <input type="text" name="onayami_naiyou" value="">
+                         </td>
+                         </tr>
+   </script>
 
   <script src="./js/KiiSDK.min.js"></script>
   <script src="./js/ractive.js"></script>
