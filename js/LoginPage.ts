@@ -1,4 +1,5 @@
 /// <reference path="./kii.d.ts"/>
+/// <reference path="./app.ts"/>
 class LoginPage implements Page {
     app : Application;
     ractive : Ractive;
@@ -16,8 +17,9 @@ class LoginPage implements Page {
                 var password = this.ractive.get("password")
 
                 KiiUser.authenticate(email, password).then(
-                function(theUser) {
+                (theUser : KiiUser) => {
                     alert("ログインしました")
+                    this.app.showPage("")
                 }
                 ).catch(
                     function(error) {
