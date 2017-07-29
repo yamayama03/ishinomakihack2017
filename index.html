@@ -100,7 +100,10 @@
   </script>
 
    <script id="ArticleTemplate" type="text/ractive">
-    <h2>{{title}}</h2>
+     <header class="toolbar">
+       <img class="back" src="./img/arrow_back.png" on-click="@this.back()">
+       <h1>{{title}}</h1>
+     </header>
     <p>{{text}}</p><br>
     <p>累計ブラックポイント:{{point}}</p><br>
     <p>
@@ -117,7 +120,10 @@
 
 
    <script id="PostTemplate" type="text/ractive">
-    <h1 text>Post page</h1>
+     <header class="toolbar">
+       <img class="back" src="./img/arrow_back.png" on-click="@this.back()">
+       <h1>投稿</h1>
+     </header>
                      <table>
                      <tr>
                          <th>
@@ -144,7 +150,10 @@
   </script>
 
    <script id="TroubleTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">Trouble page</h1>
+     <header class="toolbar">
+       <img class="back" src="./img/arrow_back.png" on-click="@this.back()">
+       <h1>お悩み相談室</h1>
+     </header>
     <p>text{{# list}}
     {{#if key == 1}}
     	<p><img src = "./img/ic_user.png">{{value}}</p>

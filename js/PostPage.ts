@@ -25,6 +25,9 @@ class PostPage implements Page {
                     window.history.back()
                 })
             },
+            back : () => {
+                window.history.back();
+            },
         });
     }
 }
