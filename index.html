@@ -99,10 +99,10 @@
   </script>
 
    <script id="ArticleTemplate" type="text/ractive">
-     <header class="toolbar">
-       <img class="back" src="./img/arrow_back.png" on-click="@this.back()">
-       <h1>{{title}}</h1>
-     </header>
+    <header class="toolbar">
+      <img class="back" src="./img/arrow_back.png" on-click="@this.back()">		
+      <h1>{{title}}</h1>		
+    </header>   
     <p>{{text}}</p><br>
     {{#if point <= 5}}
         <div class=left><img src = "./img/meter_1.png">{{point}}</div>
@@ -161,19 +161,26 @@
   </script>
 
    <script id="TroubleTemplate" type="text/ractive">
-     <header class="toolbar">
-       <img class="back" src="./img/arrow_back.png" on-click="@this.back()">
-       <h1>お悩み相談室</h1>
-     </header>
-    <p>text{{# list}}
-    {{#if key == 1}}
-    	<p><img src = "./img/ic_user.png">{{value}}</p>
+    <header class="toolbar">	
+      <img class="back" src="./img/arrow_back.png" on-click="@this.back()">
+      <h1>お悩み相談室</h1>
+    </header>   
+
+    <p>{{# list}}
+    {{#if key == 1 && value != ""}}
+    	<p><img src = "./img/ic_user.png" align="top">{{value}}</p>
+    {{elseif key == 2 && value != ""}}
+    	<p><img src = "./img/ic_god.png" align="top" align="right">{{value}}</p>
+    {{elseif key == 2 && value == ""}}
+    	<p><img src = "./img/ic_god.png" align="top">信じる者は救われる</p>
     {{else}}
-    	<p>{{value}}<img src = "./img/ic_god.png"></p>
     {{/if}}
     	{{/}}</p>
-    <textarea cols="横幅" rows="行数" value= "{{text}}"></textarea>
+    <div>
+    <br>
+    <textarea cols="20" rows="5" value= "{{text}}"></textarea>
     <button on-click="@this.send()">投稿</button>
+    </div>
     <p></p>
   </script>
 
