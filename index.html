@@ -101,7 +101,6 @@
 
    <script id="ArticleTemplate" type="text/ractive">
     <header class="toolbar">
-      <h2>{{title}}</h2>
       <img class="back" src="./img/arrow_back.png" on-click="@this.back()">		
       <h1>{{title}}</h1>		
     </header>   
@@ -121,7 +120,10 @@
 
 
    <script id="PostTemplate" type="text/ractive">
-    <h1 text>Post page</h1>
+     <header class="toolbar">
+       <img class="back" src="./img/arrow_back.png" on-click="@this.back()">		
+       <h1>投稿</h1>		
+     </header>
                      <table>
                      <tr>
                          <th>
