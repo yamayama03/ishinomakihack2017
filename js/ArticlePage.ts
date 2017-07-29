@@ -14,8 +14,17 @@ class ArticlePage implements Page {
         this.ractive = new Ractive({
             el : '#container',
             template : '#ArticleTemplate',
-            showNext : () => {
-                this.app.showPage('second/1234');
+            sendComment : () => {
+                var comment = this.ractive.get("comment")
+
+                var obj = Kii.bucketWithName("comment").createObject()
+                obj.set("parent",this.id)
+                
+                obj.set("comment",comment)
+                obj.save().then((o:KiiObject)=>{
+                    alert("投稿しました")
+                    window.history.back()
+                })
             },
             addPoint : () => {
                 this.addPoint();
@@ -29,6 +38,14 @@ class ArticlePage implements Page {
             var text = o.get("text")
             var point = o.get("point")
             this.ractive.set({title:title,text:text,point:point})
+        })
+
+        obj = KiiObject.objectWithURI("KiiCloud://buckets/comment/objects/")
+        var bucket = Kii.bucketWithName("comment")
+        var allQuery:KiiQuery = KiiQuery.queryWithClause(KiiClause.equals("parent",this.id));
+        allQuery.sortByDesc("_created")
+        bucket.executeQuery(allQuery).then((v:any[])=>{
+            this.ractive.set("list",v[1])
         })
     }
 

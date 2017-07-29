@@ -155,6 +155,16 @@ var ArticlePage = (function () {
         this.ractive = new Ractive({
             el: '#container',
             template: '#ArticleTemplate',
+            sendComment: function () {
+                var comment = _this.ractive.get("comment");
+                var obj = Kii.bucketWithName("comment").createObject();
+                obj.set("parent", _this.id);
+                obj.set("comment", comment);
+                obj.save().then(function (o) {
+                    alert("投稿しました");
+                    window.history.back();
+                });
+            },
             showNext: function () {
                 _this.app.showPage('second/1234');
             },
@@ -169,6 +179,13 @@ var ArticlePage = (function () {
             var text = o.get("text");
             var point = o.get("point");
             _this.ractive.set({ title: title, text: text, point: point });
+        });
+        obj = KiiObject.objectWithURI("KiiCloud://buckets/comment/objects/");
+        var bucket = Kii.bucketWithName("comment");
+        var allQuery = KiiQuery.queryWithClause(KiiClause.equals("parent", this.id));
+        allQuery.sortByDesc("_created");
+        bucket.executeQuery(allQuery).then(function (v) {
+            _this.ractive.set("list", v[1]);
         });
     };
     ArticlePage.prototype.addPoint = function () {
