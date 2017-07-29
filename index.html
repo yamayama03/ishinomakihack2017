@@ -101,18 +101,14 @@
 
    <script id="ArticleTemplate" type="text/ractive">
     <h2>{{title}}</h2>
-    <p>{{text}}</p>
-    <p>累計ブラックポイント:{{point}}</p>
+    <p>{{text}}</p><br>
+    <p>累計ブラックポイント:{{point}}</p><br>
     <p>
-      <button class="btn2" on-click="@this.addPoint()">ブラックだね</button>
-      <input type="text" name="comment" value="{{comment}}">
-      <button class="btn1" on-click="@this.sendComment()">投稿する</button>
+      <button class="btn2" on-click="@this.addPoint()">ブラックだね</button><br><br>
+      <input type="text" name="comment" value="{{comment}}"><br><br>
+      <button class="btn1" on-click="@this.sendComment()">投稿する</button><br><br>
     </p>
-    <p>
-      <button class="btn1">投稿する</button>
-    </p>
-
-    <p>コメント一覧</p>
+    <h2>コメント一覧</h2><br>
      {{# list}}
         <div> {{get("comment")}} </div>
         {{/}}
