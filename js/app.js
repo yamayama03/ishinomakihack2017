@@ -169,12 +169,12 @@ var ArticlePage = (function () {
             el: '#container',
             template: '#ArticleTemplate',
             sendComment: function () {
+                _this.playSendVoice();
                 var comment = _this.ractive.get("comment");
                 var obj = Kii.bucketWithName("comment").createObject();
                 obj.set("parent", _this.id);
                 obj.set("comment", comment);
                 obj.save().then(function (o) {
-                    _this.playSendVoice();
                     window.history.back();
                 });
             },
@@ -209,6 +209,10 @@ var ArticlePage = (function () {
         });
     };
     ArticlePage.prototype.playSendVoice = function () {
+        var num = Math.floor(Math.random() * 3);
+        var audio = new Audio();
+        audio.src = "./voice/post" + num + ".mp3";
+        audio.play();
     };
     ArticlePage.prototype.playPointVoice = function () {
         var num = Math.floor(Math.random() * 4);
