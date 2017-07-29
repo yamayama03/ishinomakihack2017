@@ -85,7 +85,7 @@ var LoginPage = (function () {
                 var password = _this.ractive.get("password");
                 KiiUser.authenticate(email, password).then(function (theUser) {
                     localStorage.setItem('token', theUser.getAccessToken());
-                    alert("ログインしました");
+                    _this.playAudio();
                     _this.app.showPage("/");
                 })["catch"](function (error) {
                     var theUser = error.target;
@@ -97,6 +97,12 @@ var LoginPage = (function () {
                 window.history.back();
             }
         });
+    };
+    LoginPage.prototype.playAudio = function () {
+        var num = Math.floor(Math.random() * 2);
+        var audio = new Audio();
+        audio.src = "./voice/login" + num + ".mp3";
+        audio.play();
     };
     return LoginPage;
 }());
