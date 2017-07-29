@@ -35,7 +35,6 @@
     
     
    <script id="LoginTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">login  page</h1>
                      <table>
                      <tr>
                          <th>
@@ -67,7 +66,6 @@
   </script>
 
    <script id="NewUserTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">NewUser page</h1>
         <div align="center">
                      <table>
                      <tr>
@@ -96,19 +94,17 @@
   </script>
 
    <script id="ListTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">List page</h1>
   </script>
 
    <script id="ArticleTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">article page</h1>
     <h2>{{title}}</h2>
     <p>{{text}}</p>
     <p>累計ブラックポイント:{{point}}</p>
     <p>
-      <button class="btn1">投稿する</button>
+    <button class="btn2" on-click="@this.addPoint()">ブラックだね</button>
     </p>
     <p>
-    <button class="btn2" on-click="@this.addPoint()">ブラックだね</button>
+      <button class="btn1">投稿する</button>
     </p>
 
     <p>コメント一覧</p>
@@ -116,7 +112,7 @@
 
 
    <script id="PostTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">Post page</h1>
+    <h1 text>Post page</h1>
                      <table>
                      <tr>
                          <th>
