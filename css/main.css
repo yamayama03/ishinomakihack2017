@@ -89,7 +89,6 @@ table td {
 }
 
 .btn1 {
-    width:100px;
     height:50px;
     background-color: #FF99CC;
     box-shadow: 2px 2px 3px 1px #CC66FF;
@@ -113,7 +112,7 @@ table td {
 }
 
 .btn2 {
-    width:100px;
+    margin-left: 4px;
     height:50px;
     background-color: #000;
     box-shadow: 2px 2px 3px 1px #CC66FF;
