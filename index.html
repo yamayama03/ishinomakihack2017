@@ -100,10 +100,7 @@
   </script>
 
    <script id="ArticleTemplate" type="text/ractive">
-     <header class="toolbar">
-       <img class="back" src="./img/arrow_back.png" on-click="@this.back()">
-       <h1>{{title}}</h1>
-     </header>
+    <h2>{{title}}</h2>
     <p>{{text}}</p><br>
     <p>累計ブラックポイント:{{point}}</p><br>
     <p>
@@ -120,10 +117,7 @@
 
 
    <script id="PostTemplate" type="text/ractive">
-     <header class="toolbar">
-       <img class="back" src="./img/arrow_back.png" on-click="@this.back()">
-       <h1>投稿</h1>
-     </header>
+    <h1 text>Post page</h1>
                      <table>
                      <tr>
                          <th>
@@ -150,19 +144,21 @@
   </script>
 
    <script id="TroubleTemplate" type="text/ractive">
-     <header class="toolbar">
-       <img class="back" src="./img/arrow_back.png" on-click="@this.back()">
-       <h1>お悩み相談室</h1>
-     </header>
-    <p>text{{# list}}
-    {{#if key == 1}}
-    	<p><img src = "./img/ic_user.png">{{value}}</p>
+    <h1 on-click="@this.showNext()">Trouble page</h1>
+    <p>貴方のお悩みを教えてね♪{{# list}}
+    {{#if key == 1 && value != ""}}
+    	<p><img src = "./img/ic_user.png" align="top">{{value}}</p>
+    {{elseif key == 2 && value != ""}}
+    	<p><img src = "./img/ic_god.png" align="top" align="right">{{value}}</p>
     {{else}}
-    	<p>{{value}}<img src = "./img/ic_god.png"></p>
+    	
     {{/if}}
     	{{/}}</p>
+    <div>
+    <br>
     <textarea cols="横幅" rows="行数" value= "{{text}}"></textarea>
     <button on-click="@this.send()">投稿</button>
+    </div>
     <p></p>
   </script>
 
