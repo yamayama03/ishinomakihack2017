@@ -17,11 +17,13 @@ class NewUserPage implements Page {
 
                 var user = KiiUser.userWithEmailAddress(email, password);
 
-                user.register().then(
-                function(theUser) {
-                    alert("成功")
-                }
-                ).catch(
+                user.register().then((theUser:KiiUser)=> {
+                    var obj=KiiObject.objectWithURI("kiicloud://buckets/user/objects/"+theUser.getID());
+                    obj.set("point",0);
+                    return obj.saveAllFields();
+                }).then((o:KiiObject)=>{
+                     alert("成功")
+                }).catch(
                     function(error) {
                     var theUser = error.target;
                     var errorString = error.message;
