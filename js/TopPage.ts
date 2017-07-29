@@ -10,14 +10,26 @@ class TopPage implements Page {
         this.ractive = new Ractive({
             el : '#container',
             template : '#topTemplate',
+            data : {
+                loggedIn : (KiiUser.getCurrentUser() != null),
+            },
             showSignup : () => {
                 this.app.showPage("newuser");
             },
             newArticle : () => {
-                this.app.showPage("article");
+                if (KiiUser.getCurrentUser() == null) {
+                    this.app.showPage("login");
+                } else {
+                    this.app.showPage("article");
+                }
             },
             showTrouble : () => {
                 this.app.showPage("trouble");
+            },
+            logout : () => {
+                KiiUser.logOut();
+                localStorage.setItem('token', '');
+                this.ractive.set('loggedIn', false);
             },
         });
     }

@@ -11,7 +11,11 @@
     <section class="top">
       <header>
         <h1 on-click="@this.showNext()">Top page</h1>
+        {{#if loggedIn}}
+        <label on-click="@this.logout()">ログアウト</label>
+        {{else}}
         <label on-click="@this.showSignup()">新規登録</label>
+        {{/if}}
       </header>
       <img src="./img/logo.png" value="ロゴ"/>
       <section>

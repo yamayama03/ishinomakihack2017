@@ -55,8 +55,9 @@ function createRouter(app : Application) : any {
 
 $(() => {
     var app = new Application();
-    app.start();
-    var AppRouter = createRouter(app);
-    app.router = new AppRouter();
-    Backbone.history.start();
+    app.start().then((b : boolean) => {
+        var AppRouter = createRouter(app);
+        app.router = new AppRouter();
+        Backbone.history.start();
+    });
 });

@@ -17,7 +17,8 @@ class LoginPage implements Page {
                 var password = this.ractive.get("password")
 
                 KiiUser.authenticate(email, password).then(
-                (theUser : KiiUser) => {
+                    (theUser : KiiUser) => {
+                    localStorage.setItem('token', theUser.getAccessToken());
                     alert("ログインしました")
                     this.app.showPage("newuser")
                 }
