@@ -22,11 +22,10 @@
         {{# list}}
         <div class="list_item line1" on-click="@this.showArticle(.)"> {{get("title")}} ({{get("point")}})</div>
         {{/}}
-        <button class="button match_width" on-click="@this.newArticle()">記事投稿</button>
+        <button class="button match_width" on-click="@this.newArticle()">悩み投稿</button>
       </section>
       <section class="card">
-          <div class=center><img src="./img/trouble.png" class=trouble_img /></div>
-        <h2>お悩み相談室</h2>
+          <div class=center><img on-click="@this.showTrouble()" src="./img/trouble.png" class="trouble_img" /></div>
         <button class="button match_width" on-click="@this.showTrouble()">悩みを打ち明ける</button>
       </section>
     </section>
@@ -89,7 +88,7 @@
                      </tr>
                      <tr>
                          <td  colspan="2" >
-                                   <div class=center><button class="btn1">登録</button></div>
+                                   <div class=center><button class="btn1" on-click="showNext()">登録</button></div>
                          </td>
                      </tr>
              </table>
@@ -100,24 +99,42 @@
   </script>
 
    <script id="ArticleTemplate" type="text/ractive">
-    <h2>{{title}}</h2>
+     <header class="toolbar">
+       <img class="back" src="./img/arrow_back.png" on-click="@this.back()">
+       <h1>{{title}}</h1>
+     </header>
     <p>{{text}}</p><br>
+    {{#if point <= 5}}
+        <div class=left><img src = "./img/meter_1.png">{{point}}</div>
+         {{elseif point > 5 && point <= 10}}
+        <div class=left><img src = "./img/meter_2.png">{{point}}</div>
+         {{elseif point > 10 && point <= 15}}
+        <div class=left><img src = "./img/meter_3.png">{{point}}</div>
+         {{elseif point > 15 && point <= 20}}
+        <div class=left><img src = "./img/meter_4.png">{{point}}</div>
+         {{elseif point >= 21}}
+        <div class=left><img src = "./img/meter_5.png">{{point}}</div>
+        {{/if}}
     <p>累計ブラックポイント:{{point}}</p><br>
-    <p>
-      <button class="btn2" on-click="@this.addPoint()">ブラックだね</button><br><br>
-      <input type="text" name="comment" value="{{comment}}"><br><br>
-      <button class="btn1" on-click="@this.sendComment()">投稿する</button><br><br>
-    </p>
+    <div>
+      <button class="btn2 match_width" on-click="@this.addPoint()">ブラックだね</button><br><br>
+      <h2>コメント</h2>
+      <input type="text" class="comment" value="{{comment}}"><br><br>
+      <button class="btn1" on-click="@this.sendComment()">コメントする</button><br><br>
+    </div>
     <h2>コメント一覧</h2><br>
      {{# list}}
-        <div> {{get("comment")}} </div>
-        {{/}}
+        <div class="list_item line1"> {{get("comment")}} </div>
+     {{/}}
     
   </script>
 
 
    <script id="PostTemplate" type="text/ractive">
-    <h1 text>Post page</h1>
+     <header class="toolbar">
+       <img class="back" src="./img/arrow_back.png" on-click="@this.back()">
+       <h1>悩み投稿</h1>
+     </header>
                      <table>
                      <tr>
                          <th>
@@ -132,7 +149,7 @@
                              本文
                          </th>
                          <td>
-                             <input type="text" name="post_text" value="{{text}}">
+                             <input type="text" class="text" value="{{text}}">
                          </td>
                      </tr>
                      <tr>
@@ -144,12 +161,15 @@
   </script>
 
    <script id="TroubleTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">Trouble page</h1>
+     <header class="toolbar">
+       <img class="back" src="./img/arrow_back.png" on-click="@this.back()">
+       <h1>お悩み相談室</h1>
+     </header>
     <p>text{{# list}}
     {{#if key == 1}}
     	<p><img src = "./img/ic_user.png">{{value}}</p>
     {{else}}
-    	<p><img src = "./img/ic_god.png">{{value}}</p>
+    	<p>{{value}}<img src = "./img/ic_god.png"></p>
     {{/if}}
     	{{/}}</p>
     <textarea cols="横幅" rows="行数" value= "{{text}}"></textarea>
