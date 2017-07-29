@@ -2,28 +2,114 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title></title>
 </head>
 <body>
   <section id="container"></section>
   <script id="topTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">Top page</h1>
-  </script>
+    <section class="top">
+      <header>
+        <h1 on-click="@this.showNext()">Top page</h1>
+        <label on-click="@this.showSignup()">新規登録</label>
+      </header>
+      <img src="" value="ロゴ"/>
+      <section>
+        <h2>人気ブラック記事</h2>
+      </section>
+      
+      <section>
+        <button on-click="@this.newArticle()">記事投稿</button>
+      </section>
 
+      <section>
+        <h2>お悩み相談室</h2>
+        <button on-click="@this.showTrouble()">悩みを打ち明ける</button>
+      </section>
+    </section>
+  </script>
+    
+    
    <script id="LoginTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">login  page</h1>
+                     <table>
+                     <tr>
+                         <th>
+                             E-MAIL
+                         </th>
+                         <td>
+                             <input type="text" name="user_id" value="{{email}}">
+                         </td>
+                     </tr>
+                     <tr>
+                         <th>
+                             パスワード
+                         </th>
+                         <td>
+                             <input type="password" name="password" value="{{password}}">
+                         </td>
+                     </tr>
+                     <tr>
+                         <td >
+                             <button on-click="@this.showNext()">login</button>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td >
+                         <input type="button" on-Click="" value="新規登録">
+                         </td >
+                     </tr>
+             </table>
   </script>
 
    <script id="NewUserTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">NewUser page</h1>
+        <div align="center">
+                     <table>
+                     <tr>
+                         <th>
+                             登録メールアドレス
+                         </th>
+                         <td>
+                             <input type="text" name="add_user_id" value={{email}} size="24">
+                         </td>
+                     </tr>
+                     <tr>
+                         <th>
+                             パスワード
+                         </th>
+                         <td>
+                             <input type="password" name="add_password"  value={{password}} size="24">
+                         </td>
+                     </tr>
+                     <tr>
+                         <td >
+                             <input type="submit" on-click="@this.showNext()" value="登録">
+                         </td>
+                     </tr>
+             </table>
+    </div>
   </script>
 
-   <script id="TimeLineTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">TimeLine page</h1>
+   <script id="ListTemplate" type="text/ractive">
+    <h1 on-click="@this.showNext()">List page</h1>
   </script>
 
-   <script id="NewsTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">News page</h1>
+   <script id="ArticleTemplate" type="text/ractive">
+    <h1 on-click="@this.showNext()">article page</h1>
+    <h2>タイトル</h2>
+    <a>本文</a>
+    <a>記事投稿者ニックネーム</a>
+    <a>累計ブラックポイント</a>
+    <input type="text" name="black_button" value="ブラックだね">
+    <input type="text" name="onayami_title" value="コメント">
+    <input type="text" name="post_button" value="投稿">
+    <a>コメント一覧</a>
+  </script>
+
+
+   <script id="PostTemplate" type="text/ractive">
+    <h1 on-click="@this.showNext()">Post page</h1>
   </script>
 
    <script id="TroubleTemplate" type="text/ractive">
@@ -36,6 +122,8 @@
     <p></p>
   </script>
 
+
+  <link rel="stylesheet" type="text/css" href="./css/main.css"/>
   <script src="./js/KiiSDK.min.js"></script>
   <script src="./js/ractive.js"></script>
   <!-- for backbone.js -->

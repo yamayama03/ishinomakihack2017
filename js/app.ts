@@ -3,9 +3,10 @@
 /// <reference path="./TopPage.ts"/>
 /// <reference path="./LoginPage.ts"/>
 /// <reference path="./NewUserPage.ts"/>
-/// <reference path="./TimeLinePage.ts"/>
-/// <reference path="./NewsPage.ts"/>
+/// <reference path="./ListPage.ts"/>
+/// <reference path="./ArticlePage.ts"/>
 /// <reference path="./TroublePage.ts"/>
+/// <reference path="./PostPage.ts"/>
 /// <reference path="./Application.ts"/>
 declare var $;
 declare var _;
@@ -22,8 +23,10 @@ function createRouter(app : Application) : any {
             "" : "top",
             "login" : "login",
             "newuser" : "newuser",
-            "timeline" : "timeline",
-            "news" : "news",
+            "trouble" : "trouble",
+            "post" : "post",
+            "list" : "list",
+            "article" : "article",
             "trouble" : "trouble"
         },
         
@@ -36,14 +39,17 @@ function createRouter(app : Application) : any {
         newuser : () => {
             showPage(new NewUserPage(app));
         },
-        timeline : () => {
-            showPage(new TimeLinePage(app));
+        list : () => {
+            showPage(new ListPage(app));
         },
-        news : () => {
-            showPage(new NewsPage(app));
+        article : () => {
+            showPage(new ArticlePage(app));
         },
         trouble : () => {
             showPage(new TroublePage(app));
+        },
+        post : () => {
+            showPage(new PostPage(app));
         },
     });
 }

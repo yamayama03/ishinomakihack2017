@@ -1,4 +1,4 @@
-class TimeLinePage implements Page {
+class PostPage implements Page {
     app : Application;
     ractive : Ractive;
     
@@ -9,7 +9,7 @@ class TimeLinePage implements Page {
     onCreate() {
         this.ractive = new Ractive({
             el : '#container',
-            template : '#TimeLineTemplate',
+            template : '#PostTemplate',
             showNext : () => {
                 this.app.showPage('second/1234');
             },

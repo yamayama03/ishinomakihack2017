@@ -1,3 +1,4 @@
+/// <reference path="./kii.d.ts"/>
 class NewUserPage implements Page {
     app : Application;
     ractive : Ractive;
@@ -11,7 +12,22 @@ class NewUserPage implements Page {
             el : '#container',
             template : '#NewUserTemplate',
             showNext : () => {
-                this.app.showPage('second/1234');
+                var email = this.ractive.get("email");
+                var password = this.ractive.get("password");
+
+                var user = KiiUser.userWithEmailAddress(email, password);
+
+                user.register().then(
+                function(theUser) {
+                    alert("成功")
+                }
+                ).catch(
+                    function(error) {
+                    var theUser = error.target;
+                    var errorString = error.message;
+                    alert("登録できません")
+                    }
+                );        
             },
         });
     }
