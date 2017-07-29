@@ -1,6 +1,11 @@
 /// <reference path="./ractive.d.ts"/>
 /// <reference path="./Page.ts"/>
 /// <reference path="./TopPage.ts"/>
+/// <reference path="./LoginPage.ts"/>
+/// <reference path="./NewUserPage.ts"/>
+/// <reference path="./TimeLinePage.ts"/>
+/// <reference path="./NewsPage.ts"/>
+/// <reference path="./TroublePage.ts"/>
 /// <reference path="./Application.ts"/>
 declare var $;
 declare var _;
@@ -15,13 +20,30 @@ function createRouter(app : Application) : any {
     return Backbone.Router.extend({
         routes : {
             "" : "top",
-            "second(/:id)" : "second",
+            "login" : "login",
+            "newuser" : "newuser",
+            "timeline" : "timeline",
+            "news" : "news",
+            "trouble" : "trouble"
         },
+        
         top : () => {
             showPage(new TopPage(app));
         },
-        second : (id : string) => {
-            console.log('second ' + id);
+        login : () => {
+            showPage(new LoginPage(app));
+        },
+        newuser : () => {
+            showPage(new NewUserPage(app));
+        },
+        timeline : () => {
+            showPage(new TimeLinePage(app));
+        },
+        news : () => {
+            showPage(new NewsPage(app));
+        },
+        trouble : () => {
+            showPage(new TroublePage(app));
         },
     });
 }
