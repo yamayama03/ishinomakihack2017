@@ -3,6 +3,8 @@ class ArticlePage implements Page {
     app : Application;
     ractive : Ractive;
     private id : string
+    private obj : KiiObject;
+
     constructor(app : Application,id:string) {
         this.app = app;
         this.id = id;
@@ -24,9 +26,14 @@ class ArticlePage implements Page {
                     window.history.back()
                 })
             },
+            addPoint : () => {
+                this.addPoint();
+            },
         });
         var obj = KiiObject.objectWithURI("KiiCloud://buckets/anger/objects/"+this.id)
         obj.refresh().then((o:KiiObject)=>{
+            this.obj = o;
+
             var title = o.get("title")
             var text = o.get("text")
             var point = o.get("point")
@@ -40,5 +47,14 @@ class ArticlePage implements Page {
         bucket.executeQuery(allQuery).then((v:any[])=>{
             this.ractive.set("list",v[1])
         })
+    }
+
+    private addPoint() {
+        this.obj.set("point", this.obj.get<number>("point") + 1);
+        this.obj.saveAllFields(null, false).then((o : KiiObject) => {
+            this.ractive.set('point', o.get("point"));
+        }).catch((e : any) => {
+            console.log(e);
+        });
     }
 }

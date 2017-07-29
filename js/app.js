@@ -164,10 +164,17 @@ var ArticlePage = (function () {
                     alert("投稿しました");
                     window.history.back();
                 });
+            },
+            showNext: function () {
+                _this.app.showPage('second/1234');
+            },
+            addPoint: function () {
+                _this.addPoint();
             }
         });
         var obj = KiiObject.objectWithURI("KiiCloud://buckets/anger/objects/" + this.id);
         obj.refresh().then(function (o) {
+            _this.obj = o;
             var title = o.get("title");
             var text = o.get("text");
             var point = o.get("point");
@@ -179,6 +186,15 @@ var ArticlePage = (function () {
         allQuery.sortByDesc("_created");
         bucket.executeQuery(allQuery).then(function (v) {
             _this.ractive.set("list", v[1]);
+        });
+    };
+    ArticlePage.prototype.addPoint = function () {
+        var _this = this;
+        this.obj.set("point", this.obj.get("point") + 1);
+        this.obj.saveAllFields(null, false).then(function (o) {
+            _this.ractive.set('point', o.get("point"));
+        })["catch"](function (e) {
+            console.log(e);
         });
     };
     return ArticlePage;

@@ -7,6 +7,15 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);    
 }
 
+.list_item {
+    height : 48px;
+    border-bottom: 1px solid lightgray;
+}
+
+.list_item.line1 {
+    line-height: 48px;
+}
+
 .button {
     background-color: #4285f4;
     border-style: none;
@@ -109,3 +118,5 @@ table td {
     padding: 5px 10px;
     color: #FF99CC;
 }
+
+

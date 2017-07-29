@@ -21,7 +21,7 @@
       <section class="card">
         <h2>人気ブラック記事</h2>
         {{# list}}
-        <div on-click="@this.showArticle(.)"> {{get("title")}} </div>
+        <div class="list_item line1" on-click="@this.showArticle(.)"> {{get("title")}} ({{get("point")}})</div>
         {{/}}
         <button class="button match_width" on-click="@this.newArticle()">記事投稿</button>
       </section>
@@ -55,12 +55,12 @@
                      </tr>
                      <tr>
                          <td colspan="2">
-                             <button on-click="@this.showNext()" >login</button>
+                             <button class="btn1" on-click="@this.showNext()" >login</button>
                          </td>
                      </tr>
                      <tr>
                          <td  colspan="2">
-                         <input type="button" on-Click="" value="新規登録">
+                         <button class="btn1" on-Click="" >新規登録</button>
                          </td >
                      </tr>
              </table>
@@ -87,8 +87,8 @@
                          </td>
                      </tr>
                      <tr>
-                         <td  colspan="2">
-                             <input type="submit" on-click="@this.showNext()" value="登録">
+                         <td  colspan="2" >
+                                   <button class="btn1">登録</button>
                          </td>
                      </tr>
              </table>
@@ -110,7 +110,7 @@
       <button class="btn1" on-click="@this.sendComment()">投稿する</button>
     </p>
     <p>
-      <button class="btn2">ブラックだね</button>
+    <button class="btn2" on-click="@this.addPoint()">ブラックだね</button>
     </p>
 
     <p>コメント一覧</p>
