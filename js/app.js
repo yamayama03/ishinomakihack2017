@@ -133,16 +133,16 @@ var TroublePage = (function () {
             el: '#container',
             template: '#TroubleTemplate',
             data: {
-                list: []
+                list: [{ key: 1, value: "" }, { key: 2, value: "" }]
             },
             showNext: function () {
                 _this.app.showPage('second/1234');
             },
             send: function () {
-                _this.ractive.push("list", _this.ractive.get("text"));
+                _this.ractive.push("list", { key: 1, value: _this.ractive.get("text") });
                 _this.ractive.set("text", "");
                 setTimeout(function () {
-                    _this.ractive.push("list", _this.getAnsewer());
+                    _this.ractive.push("list", { key: 2, value: _this.getAnsewer() });
                 }, 2000);
             }
         });

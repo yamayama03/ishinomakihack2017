@@ -11,15 +11,19 @@ class TroublePage implements Page {
             el : '#container',
             template : '#TroubleTemplate',
             data : {
-            	list:[]},
+            	list:[{key : 1,value : ""},{key : 2,value : ""}]
+            },
             showNext : () => {
                 this.app.showPage('second/1234');
             },
             send : () => {
-            	this.ractive.push("list",this.ractive.get("text"))
+            	this.ractive.push("list",
+            		{key : 1, value : this.ractive.get("text")})
             	this.ractive.set("text","")
-            setTimeout(() => {
-            	this.ractive.push("list",this.getAnsewer())},2000)
+            	setTimeout(() => {
+            		this.ractive.push("list",
+            			{key : 2, value : this.getAnsewer()})
+            	},2000)
             },
         });
     }
