@@ -48,7 +48,7 @@
                              登録メールアドレス
                          </th>
                          <td>
-                             <input type="text" name="add_user_id" value="" size="24">
+                             <input type="text" name="add_user_id" value={{email}} size="24">
                          </td>
                      </tr>
                      <tr>
@@ -56,12 +56,12 @@
                              パスワード
                          </th>
                          <td>
-                             <input type="password" name="add_password"  value="" size="24">
+                             <input type="password" name="add_password"  value={{password}} size="24">
                          </td>
                      </tr>
                      <tr>
                          <td >
-                             <input type="submit" onClick="" value="登録">
+                             <input type="submit" on-click="@this.showNext()" value="登録">
                          </td>
                      </tr>
              </table>

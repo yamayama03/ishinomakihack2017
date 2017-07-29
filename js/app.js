@@ -30,6 +30,7 @@ var LoginPage = (function () {
     };
     return LoginPage;
 }());
+/// <reference path="./kii.d.ts"/>
 var NewUserPage = (function () {
     function NewUserPage(app) {
         this.app = app;
@@ -40,7 +41,16 @@ var NewUserPage = (function () {
             el: '#container',
             template: '#NewUserTemplate',
             showNext: function () {
-                _this.app.showPage('second/1234');
+                var email = _this.ractive.get("email");
+                var password = _this.ractive.get("password");
+                var user = KiiUser.userWithEmailAddress(email, password);
+                user.register().then(function (theUser) {
+                    alert("成功");
+                })["catch"](function (error) {
+                    var theUser = error.target;
+                    var errorString = error.message;
+                    alert("登録できません");
+                });
             }
         });
     };
