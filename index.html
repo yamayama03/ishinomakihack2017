@@ -171,13 +171,13 @@
       <h1>お悩み相談室</h1>
     </header>   
 
-    <p>{{# list}}
+    <p class="trouble_talk">{{# list}}
     {{#if key == 1 && value != ""}}
-    	<p><img src = "./img/ic_user.png" align="top">{{value}}</p>
+    	<p><span class="text_right">{{value}}</span><img src = "./img/ic_user.png"></p>
     {{elseif key == 2 && value != ""}}
-    	<p><img src = "./img/ic_god.png" align="top" align="right">{{value}}</p>
+    	<p><img src = "./img/ic_god.png"><span class="text">{{value}}</span></p>
     {{elseif key == 2 && value == ""}}
-    	<p><img src = "./img/ic_god.png" align="top">信じる者は救われる</p>
+    	<p><img src = "./img/ic_god.png"><span class="text">信じる者は救われる</span></p>
     {{else}}
     {{/if}}
     	{{/}}</p>
