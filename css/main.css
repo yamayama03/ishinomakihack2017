@@ -29,4 +29,15 @@
     position: absolute;
     right: 16px;
 }
+.top .card {
+    padding-top: 24px;    
+    padding-left: 16px;
+    padding-right: 16px;
+}
+.top .card h2 {
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+
 
