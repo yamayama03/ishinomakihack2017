@@ -15,8 +15,11 @@ class ArticlePage implements Page {
             el : '#container',
             template : '#ArticleTemplate',
             sendComment : () => {
+                var comment = this.ractive.get("comment");
+                if (comment.trim().length == 0) {
+                    return false;
+                }
                 this.playSendVoice();
-                var comment = this.ractive.get("comment")
 
                 var obj = Kii.bucketWithName("comment").createObject()
                 obj.set("parent",this.id)

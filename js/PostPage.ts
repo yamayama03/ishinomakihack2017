@@ -13,7 +13,14 @@ class PostPage implements Page {
             template : '#PostTemplate',
             showNext : () => {
                 var title = this.ractive.get("title");
-                var text = this.ractive.get("text")
+                var text = this.ractive.get("text");
+                // input check
+                if (title.trim().length == 0) {
+                    return false;
+                }
+                if (text.trim().length == 0) {
+                    return false;
+                }
 
                 var obj=Kii.bucketWithName("anger").createObject()
 
