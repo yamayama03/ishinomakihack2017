@@ -139,7 +139,11 @@ div.center {
 text-align : center ;
 }
 
-img.trouble_img {
-width=200px ;
-height=auto ;
+input.comment {
+line-height:5em;
 }
+
+input {
+line-height:20em;
+}
+
