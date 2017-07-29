@@ -47,7 +47,7 @@ var TopPage = (function () {
         var bucket = Kii.bucketWithName("anger");
         var allQuery = KiiQuery.queryWithClause(null);
         allQuery.setLimit(3);
-        allQuery.sortByAsc("point");
+        allQuery.sortByDesc("_created");
         bucket.executeQuery(allQuery).then(function (v) {
             _this.ractive.set("list2", v[1]);
         });
