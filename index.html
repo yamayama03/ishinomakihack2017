@@ -9,13 +9,63 @@
   <script id="topTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">Top page</h1>
   </script>
-
+    <h1 on-click="@this.showNext()">トップページ</h1>
+    </script>
+    <div align="center">
+    <td>
+    <img >value="ロゴ"</img>
+    </td>
+    <input type="submit" onClick="" value="新規登録">
+    </td>
+    <td>
+    <input type="submit" onClick="" value="人気ブラック記事">
+    </td>
+    <td>
+    <input type="submit" onClick="" value="記事投稿">
+    </td>
+    <td>
+    <input type="submit" onClick="" value="お悩み相談室">
+    </td>
+    <td>
+    <img >value="お悩み画像"</img>
+    </td>
+    <td>
+    <input type="submit" onClick="" value="悩みを打ち明ける">
+    </td>
+    </tr>
+    
+    
    <script id="LoginTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">login  page</h1>
   </script>
 
    <script id="NewUserTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">NewUser page</h1>
+        <div align="center">
+                     <table border="0">
+                     <tr>
+                         <th>
+                             登録メールアドレス
+                         </th>
+                         <td>
+                             <input type="text" name="add_user_id" value="" size="24">
+                         </td>
+                     </tr>
+                     <tr>
+                         <th>
+                             パスワード
+                         </th>
+                         <td>
+                             <input type="password" name="add_password"  value="" size="24">
+                         </td>
+                     </tr>
+                     <tr>
+                         <td >
+                             <input type="submit" onClick="" value="登録">
+                         </td>
+                     </tr>
+             </table>
+    </div>
   </script>
 
    <script id="TimeLineTemplate" type="text/ractive">
