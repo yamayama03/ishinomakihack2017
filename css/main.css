@@ -17,11 +17,12 @@
 }
 
 .button {
-    background-color: #4285f4;
+    background-color: #FF99CC;
     border-style: none;
     color : white;
     padding: 4px 8px;
     margin: 4px;
+    height: 48px;
 }
 
 .match_width {
@@ -141,6 +142,11 @@ div.center {
 
 .top .trouble_img {
     margin-left: -16px;
+}
+
+img.trouble_img {
+    width=200px ;
+    height=auto ;
 }
 
 input.comment {

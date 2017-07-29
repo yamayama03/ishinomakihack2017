@@ -15,19 +15,26 @@ class ArticlePage implements Page {
             el : '#container',
             template : '#ArticleTemplate',
             sendComment : () => {
-                var comment = this.ractive.get("comment")
+                var comment = this.ractive.get("comment");
+                if (comment.trim().length == 0) {
+                    return false;
+                }
+                this.playSendVoice();
 
                 var obj = Kii.bucketWithName("comment").createObject()
                 obj.set("parent",this.id)
                 
                 obj.set("comment",comment)
                 obj.save().then((o:KiiObject)=>{
-                    alert("投稿しました")
                     window.history.back()
                 })
             },
             addPoint : () => {
+                this.playPointVoice();
                 this.addPoint();
+            },
+            back : () => {
+                window.history.back();
             },
         });
         var obj = KiiObject.objectWithURI("KiiCloud://buckets/anger/objects/"+this.id)
@@ -56,5 +63,19 @@ class ArticlePage implements Page {
         }).catch((e : any) => {
             console.log(e);
         });
+    }
+
+    private playSendVoice() {
+        var num = Math.floor(Math.random() * 3);
+        var audio = new Audio();
+        audio.src = "./voice/post" + num + ".mp3";
+        audio.play();
+    }
+
+    private playPointVoice() {
+        var num = Math.floor(Math.random() * 4);
+        var audio = new Audio();
+        audio.src = "./voice/point" + num + ".mp3";
+        audio.play();        
     }
 }

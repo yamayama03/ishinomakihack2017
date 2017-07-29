@@ -88,7 +88,7 @@ var LoginPage = (function () {
                 var password = _this.ractive.get("password");
                 KiiUser.authenticate(email, password).then(function (theUser) {
                     localStorage.setItem('token', theUser.getAccessToken());
-                    alert("ログインしました");
+                    _this.playAudio();
                     _this.app.showPage("/");
                 })["catch"](function (error) {
                     var theUser = error.target;
@@ -100,6 +100,12 @@ var LoginPage = (function () {
                 window.history.back();
             }
         });
+    };
+    LoginPage.prototype.playAudio = function () {
+        var num = Math.floor(Math.random() * 2);
+        var audio = new Audio();
+        audio.src = "./voice/login" + num + ".mp3";
+        audio.play();
     };
     return LoginPage;
 }());
@@ -124,6 +130,7 @@ var NewUserPage = (function () {
                     return obj.saveAllFields();
                 }).then(function (o) {
                     alert("成功");
+                    _this.app.showPage("/");
                 })["catch"](function (error) {
                     var theUser = error.target;
                     var errorString = error.message;
@@ -163,16 +170,23 @@ var ArticlePage = (function () {
             template: '#ArticleTemplate',
             sendComment: function () {
                 var comment = _this.ractive.get("comment");
+                if (comment.trim().length == 0) {
+                    return false;
+                }
+                _this.playSendVoice();
                 var obj = Kii.bucketWithName("comment").createObject();
                 obj.set("parent", _this.id);
                 obj.set("comment", comment);
                 obj.save().then(function (o) {
-                    alert("投稿しました");
                     window.history.back();
                 });
             },
             addPoint: function () {
+                _this.playPointVoice();
                 _this.addPoint();
+            },
+            back: function () {
+                window.history.back();
             }
         });
         var obj = KiiObject.objectWithURI("KiiCloud://buckets/anger/objects/" + this.id);
@@ -200,6 +214,18 @@ var ArticlePage = (function () {
             console.log(e);
         });
     };
+    ArticlePage.prototype.playSendVoice = function () {
+        var num = Math.floor(Math.random() * 3);
+        var audio = new Audio();
+        audio.src = "./voice/post" + num + ".mp3";
+        audio.play();
+    };
+    ArticlePage.prototype.playPointVoice = function () {
+        var num = Math.floor(Math.random() * 4);
+        var audio = new Audio();
+        audio.src = "./voice/point" + num + ".mp3";
+        audio.play();
+    };
     return ArticlePage;
 }());
 var TroublePage = (function () {
@@ -218,11 +244,15 @@ var TroublePage = (function () {
                 _this.app.showPage('second/1234');
             },
             send: function () {
+                _this.playAudio();
                 _this.ractive.push("list", { key: 1, value: _this.ractive.get("text") });
                 _this.ractive.set("text", "");
                 setTimeout(function () {
                     _this.ractive.push("list", { key: 2, value: _this.getAnsewer() });
                 }, 2000);
+            },
+            back: function () {
+                window.history.back();
             }
         });
     };
@@ -240,6 +270,12 @@ var TroublePage = (function () {
         var ansewer = reserveList[Math.floor(Math.random() * reserveList.length + 1)];
         return ansewer;
     };
+    TroublePage.prototype.playAudio = function () {
+        var num = Math.floor(Math.random() * 4);
+        var audio = new Audio();
+        audio.src = "./voice/trouble" + num + ".mp3";
+        audio.play();
+    };
     return TroublePage;
 }());
 /// <reference path="./kii.d.ts"/>
@@ -255,6 +291,13 @@ var PostPage = (function () {
             showNext: function () {
                 var title = _this.ractive.get("title");
                 var text = _this.ractive.get("text");
+                // input check
+                if (title.trim().length == 0) {
+                    return false;
+                }
+                if (text.trim().length == 0) {
+                    return false;
+                }
                 var obj = Kii.bucketWithName("anger").createObject();
                 obj.set("title", title);
                 obj.set("text", text);
@@ -263,6 +306,9 @@ var PostPage = (function () {
                     alert("投稿しました");
                     window.history.back();
                 });
+            },
+            back: function () {
+                window.history.back();
             }
         });
     };
