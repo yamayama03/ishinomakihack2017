@@ -151,7 +151,11 @@
    <script id="TroubleTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">Trouble page</h1>
     <p>text{{# list}}
-    	<p>{{.}}</p>
+    {{#if key == 1}}
+    	<p><img src = "./img/ic_user.png">{{value}}</p>
+    {{else}}
+    	<p><img src = "./img/ic_god.png">{{value}}</p>
+    {{/if}}
     	{{/}}</p>
     <textarea cols="横幅" rows="行数" value= "{{text}}"></textarea>
     <button on-click="@this.send()">投稿</button>
