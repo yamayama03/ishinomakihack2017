@@ -110,20 +110,6 @@
 
    <script id="PostTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">Post page</h1>
-  </script>
-
-   <script id="TroubleTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">Trouble page</h1>
-    <p>text{{# list}}
-    	<p>{{.}}</p>
-    	{{/}}</p>
-    <textarea cols="横幅" rows="行数" value= "{{text}}"></textarea>
-    <button on-click="@this.send()">投稿</button>
-    <p></p>
-  </script>
-
-   <script id="PostTemplate" type="text/ractive">
-    <h1 on-click="@this.showNext()">Post page</h1>
                      <table>
                      <tr>
                          <th>
@@ -147,8 +133,17 @@
                          </td>
                      </tr>
                      </table>
-   </script>
-   
+  </script>
+
+   <script id="TroubleTemplate" type="text/ractive">
+    <h1 on-click="@this.showNext()">Trouble page</h1>
+    <p>text{{# list}}
+    	<p>{{.}}</p>
+    	{{/}}</p>
+    <textarea cols="横幅" rows="行数" value= "{{text}}"></textarea>
+    <button on-click="@this.send()">投稿</button>
+    <p></p>
+  </script>
 
   <link rel="stylesheet" type="text/css" href="./css/main.css"/>
   <script src="./js/KiiSDK.min.js"></script>
