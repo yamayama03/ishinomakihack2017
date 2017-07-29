@@ -18,17 +18,14 @@
         {{/if}}
       </header>
       <img src="./img/logo.png" value="ロゴ"/>
-      <section>
+      <section class="card">
         <h2>人気ブラック記事</h2>
-      </section>
-      
-      <section>
-        <button on-click="@this.newArticle()">記事投稿</button>
+        <button class="button match_width" on-click="@this.newArticle()">記事投稿</button>
       </section>
 
-      <section>
+      <section class="card">
         <h2>お悩み相談室</h2>
-        <button on-click="@this.showTrouble()">悩みを打ち明ける</button>
+        <button class="button match_width" on-click="@this.showTrouble()">悩みを打ち明ける</button>
       </section>
     </section>
   </script>
