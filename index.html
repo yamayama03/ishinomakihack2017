@@ -55,12 +55,12 @@
                      </tr>
                      <tr>
                          <td >
-                             <button on-click="@this.showNext()">login</button>
+                             <button on-click="@this.showNext()" colspan="2">login</button>
                          </td>
                      </tr>
                      <tr>
                          <td >
-                         <input type="button" on-Click="" value="新規登録">
+                         <input type="button" on-Click="" value="新規登録" colspan="2">
                          </td >
                      </tr>
              </table>
@@ -75,7 +75,7 @@
                              登録メールアドレス
                          </th>
                          <td>
-                             <input type="text" name="add_user_id" value={{email}} size="24">
+                             <input type="text" name="add_user_id" value={{email}}>
                          </td>
                      </tr>
                      <tr>
@@ -83,12 +83,12 @@
                              パスワード
                          </th>
                          <td>
-                             <input type="password" name="add_password"  value={{password}} size="24">
+                             <input type="password" name="add_password"  value={{password}}>
                          </td>
                      </tr>
                      <tr>
                          <td >
-                             <input type="submit" on-click="@this.showNext()" value="登録">
+                             <input type="submit" on-click="@this.showNext()" value="登録" colspan="2">
                          </td>
                      </tr>
              </table>
@@ -102,9 +102,9 @@
    <script id="ArticleTemplate" type="text/ractive">
     <h1 on-click="@this.showNext()">article page</h1>
     <h2>タイトル</h2>
-    <a>本文</a>
-    <a>記事投稿者ニックネーム</a>
-    <a>累計ブラックポイント</a>
+    <p>本文</p>
+    <p>記事投稿者ニックネーム</p>
+    <p>累計ブラックポイント</p>
     <input type="text" name="black_button" value="ブラックだね">
     <input type="text" name="onayami_title" value="コメント">
     <input type="text" name="post_button" value="投稿">
