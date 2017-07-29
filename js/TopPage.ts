@@ -14,8 +14,8 @@ class TopPage implements Page {
                 loggedIn : (KiiUser.getCurrentUser() != null),
                 list : [],
             },
-            showSignup : () => {
-                this.app.showPage("newuser");
+            showLogin : () => {
+                this.app.showPage("login");
             },
             newArticle : () => {
                 if (KiiUser.getCurrentUser() == null) {
