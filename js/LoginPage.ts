@@ -12,6 +12,9 @@ class LoginPage implements Page {
         this.ractive = new Ractive({
             el : '#container',
             template : '#LoginTemplate',
+            showSignUp : () => {
+                this.app.showPage("newuser");
+            },
             showNext : () => {
                 var email = this.ractive.get("email");
                 var password = this.ractive.get("password")
@@ -29,6 +32,9 @@ class LoginPage implements Page {
                         alert("ログイン失敗")
                     }
                 );
+            },
+            back : () => {
+                window.history.back();
             },
         });
     }

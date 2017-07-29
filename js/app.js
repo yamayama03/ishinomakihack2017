@@ -11,8 +11,8 @@ var TopPage = (function () {
                 loggedIn: (KiiUser.getCurrentUser() != null),
                 list: []
             },
-            showSignup: function () {
-                _this.app.showPage("newuser");
+            showLogin: function () {
+                _this.app.showPage("login");
             },
             newArticle: function () {
                 if (KiiUser.getCurrentUser() == null) {
@@ -80,6 +80,9 @@ var LoginPage = (function () {
         this.ractive = new Ractive({
             el: '#container',
             template: '#LoginTemplate',
+            showSignUp: function () {
+                _this.app.showPage("newuser");
+            },
             showNext: function () {
                 var email = _this.ractive.get("email");
                 var password = _this.ractive.get("password");
@@ -92,6 +95,9 @@ var LoginPage = (function () {
                     var errorString = error.message;
                     alert("ログイン失敗");
                 });
+            },
+            back: function () {
+                window.history.back();
             }
         });
     };
