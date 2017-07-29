@@ -140,6 +140,10 @@ div.center {
 text-align : center ;
 }
 
+.top .trouble_img {
+    margin-left: -16px;
+}
+
 img.trouble_img {
 width=200px ;
 height=auto ;
