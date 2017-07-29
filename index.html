@@ -117,7 +117,7 @@
                              タイトル
                          </th>
                          <td>
-                             <input type="text" name="post_title" value="">
+                             <input type="text" name="post_title" value="{{title}}">
                          </td>
                      </tr>
                      <tr>
@@ -125,12 +125,12 @@
                              本文
                          </th>
                          <td>
-                             <input type="password" name="post_text" value="">
+                             <input type="text" name="post_text" value="{{text}}">
                          </td>
                      </tr>
                      <tr>
                          <td >
-                             <input type="submit" on-click="post_post" value="記事投稿">
+                             <button on-click="@this.showNext()" >記事投稿</button>
                          </td>
                      </tr>
                      </table>

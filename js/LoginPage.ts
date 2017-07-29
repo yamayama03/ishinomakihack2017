@@ -20,7 +20,7 @@ class LoginPage implements Page {
                     (theUser : KiiUser) => {
                     localStorage.setItem('token', theUser.getAccessToken());
                     alert("ログインしました")
-                    this.app.showPage("newuser")
+                    this.app.showPage("/")
                 }
                 ).catch(
                     function(error) {

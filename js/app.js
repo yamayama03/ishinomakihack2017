@@ -75,7 +75,7 @@ var LoginPage = (function () {
                 KiiUser.authenticate(email, password).then(function (theUser) {
                     localStorage.setItem('token', theUser.getAccessToken());
                     alert("ログインしました");
-                    _this.app.showPage("newuser");
+                    _this.app.showPage("/");
                 })["catch"](function (error) {
                     var theUser = error.target;
                     var errorString = error.message;
@@ -191,6 +191,7 @@ var TroublePage = (function () {
     };
     return TroublePage;
 }());
+/// <reference path="./kii.d.ts"/>
 var PostPage = (function () {
     function PostPage(app) {
         this.app = app;
@@ -201,7 +202,15 @@ var PostPage = (function () {
             el: '#container',
             template: '#PostTemplate',
             showNext: function () {
-                _this.app.showPage('second/1234');
+                var title = _this.ractive.get("title");
+                var text = _this.ractive.get("text");
+                var obj = Kii.bucketWithName("anger").createObject();
+                obj.set("title", title);
+                obj.set("text", text);
+                obj.set("point", 0);
+                obj.save().then(function (o) {
+                    alert("投稿しました");
+                });
             }
         });
     };
