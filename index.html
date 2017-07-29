@@ -21,7 +21,7 @@
       <section class="card">
         <h2>人気ブラック記事</h2>
         {{# list}}
-        <div on-click="@this.showArticle(.)"> {{get("title")}} </div>
+        <div class="list_item line1" on-click="@this.showArticle(.)"> {{get("title")}} ({{get("point")}})</div>
         {{/}}
         <button class="button match_width" on-click="@this.newArticle()">記事投稿</button>
       </section>
