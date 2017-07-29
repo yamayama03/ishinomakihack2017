@@ -10,11 +10,10 @@
   <script id="topTemplate" type="text/ractive">
     <section class="top">
       <header>
-        <h1 on-click="@this.showNext()">Top page</h1>
         {{#if loggedIn}}
         <label on-click="@this.logout()">ログアウト</label>
         {{else}}
-        <label on-click="@this.showSignup()">新規登録</label>
+        <label on-click="@this.showLogin()">ログイン</label>
         {{/if}}
       </header>
       <div class=center><img src="./img/logo.png" class=logo_img/></div>
@@ -63,7 +62,7 @@
                      </tr>
                      <tr>
                          <td  colspan="2">
-                         <div class=center><button class="btn1" on-Click="" >新規登録</button></div>
+                         <div class=center><button class="btn1" on-click="@this.showSignUp()" >新規登録</button></div>
                          </td >
                      </tr>
              </table>
