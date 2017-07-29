@@ -105,13 +105,19 @@
     <p>{{text}}</p>
     <p>累計ブラックポイント:{{point}}</p>
     <p>
-      <button class="btn1">投稿する</button>
+    <input type="text" name="comment" value="{{comment}}">
+    <td>
+      <button class="btn1" on-click="@this.sendComment()">投稿する</button>
     </p>
     <p>
       <button class="btn2">ブラックだね</button>
     </p>
 
     <p>コメント一覧</p>
+     {{# list}}
+        <div> {{get("comment")}} </div>
+        {{/}}
+    
   </script>
 
 
