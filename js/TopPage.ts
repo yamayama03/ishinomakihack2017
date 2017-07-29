@@ -34,6 +34,9 @@ class TopPage implements Page {
             },
             showArticle : (o:KiiObject) =>{
                 this.app.showPage("article/"+o.getID())
+            },
+            showList : (o:KiiObject) =>{
+                this.app.showPage("list")
             }
         });
         var bucket = Kii.bucketWithName("anger")

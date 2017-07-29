@@ -15,9 +15,11 @@
         {{else}}
         <label on-click="@this.showLogin()">ログイン</label>
         {{/if}}
+
       </header>
       <div class=center><img src="./img/logo.png" class=logo_img/></div>
       <section class="card">
+      <label on-click="@this.showList()">全ての投稿を見る</label>
         <h2>人気ブラック記事</h2>
         {{# list}}
         <div class="list_item line1" on-click="@this.showArticle(.)"> {{get("title")}} ({{get("point")}})</div>
@@ -96,6 +98,9 @@
   </script>
 
    <script id="ListTemplate" type="text/ractive">
+      {{# list}}
+         <div class="list_item line1" on-click="@this.showArticle(.)"> {{get("title")}} ({{get("point")}})</div>
+      {{/}}
   </script>
 
    <script id="ArticleTemplate" type="text/ractive">

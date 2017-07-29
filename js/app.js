@@ -32,6 +32,9 @@ var TopPage = (function () {
             },
             showArticle: function (o) {
                 _this.app.showPage("article/" + o.getID());
+            },
+            showList: function (o) {
+                _this.app.showPage("list");
             }
         });
         var bucket = Kii.bucketWithName("anger");
@@ -152,7 +155,16 @@ var ListPage = (function () {
             template: '#ListTemplate',
             showNext: function () {
                 _this.app.showPage('second/1234');
+            },
+            showArticle: function (o) {
+                _this.app.showPage("article/" + o.getID());
             }
+        });
+        var bucket = Kii.bucketWithName("anger");
+        var allQuery = KiiQuery.queryWithClause(null);
+        allQuery.sortByDesc("point");
+        bucket.executeQuery(allQuery).then(function (v) {
+            _this.ractive.set("list", v[1]);
         });
     };
     return ListPage;
