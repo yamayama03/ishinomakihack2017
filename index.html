@@ -40,10 +40,10 @@
                      <table>
                      <tr>
                          <th>
-                             ユーザID
+                             E-MAIL
                          </th>
                          <td>
-                             <input type="text" name="user_id" value="">
+                             <input type="text" name="user_id" value="{{email}}">
                          </td>
                      </tr>
                      <tr>
@@ -51,17 +51,17 @@
                              パスワード
                          </th>
                          <td>
-                             <input type="password" name="password" value="">
+                             <input type="password" name="password" value="{{password}}">
                          </td>
                      </tr>
                      <tr>
                          <td >
-                             <input type="submit" onClick="" value="ログイン">
+                             <button on-click="@this.showNext()">login</button>
                          </td>
                      </tr>
                      <tr>
                          <td >
-                         <input type="button" onClick="" value="新規登録">
+                         <input type="button" on-Click="" value="新規登録">
                          </td >
                      </tr>
              </table>
