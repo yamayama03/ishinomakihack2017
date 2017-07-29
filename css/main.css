@@ -34,6 +34,16 @@
     background-color: #FF99CC;
 }
 
+.toolbar .back {
+    margin-top: 14px;
+    margin-left: 12px;
+}
+
+.toolbar h1 {
+    display: inline-block;
+    color: white;
+}
+
 .top header {
     positon: relative;
 }

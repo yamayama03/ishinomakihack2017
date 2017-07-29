@@ -92,6 +92,9 @@ var LoginPage = (function () {
                     var errorString = error.message;
                     alert("ログイン失敗");
                 });
+            },
+            back: function () {
+                window.history.back();
             }
         });
     };

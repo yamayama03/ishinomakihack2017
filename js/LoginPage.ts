@@ -30,6 +30,9 @@ class LoginPage implements Page {
                     }
                 );
             },
+            back : () => {
+                window.history.back();
+            },
         });
     }
 }
