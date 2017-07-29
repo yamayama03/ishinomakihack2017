@@ -20,6 +20,9 @@
       <img src="./img/logo.png" value="ロゴ"/>
       <section class="card">
         <h2>人気ブラック記事</h2>
+        {{# list}}
+        <div> {{get("title")}} </div>
+        {{/}}
         <button class="button match_width" on-click="@this.newArticle()">記事投稿</button>
       </section>
 

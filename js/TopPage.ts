@@ -12,6 +12,7 @@ class TopPage implements Page {
             template : '#topTemplate',
             data : {
                 loggedIn : (KiiUser.getCurrentUser() != null),
+                list : [],
             },
             showSignup : () => {
                 this.app.showPage("newuser");
@@ -32,5 +33,12 @@ class TopPage implements Page {
                 this.ractive.set('loggedIn', false);
             },
         });
+        var bucket = Kii.bucketWithName("anger")
+        var allQuery:KiiQuery = KiiQuery.queryWithClause(null);
+        allQuery.setLimit(5)
+        allQuery.sortByDesc("point")
+        bucket.executeQuery(allQuery).then((v:any[])=>{
+            this.ractive.set("list",v[1])
+        })
     }
 }
