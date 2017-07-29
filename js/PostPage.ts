@@ -22,6 +22,7 @@ class PostPage implements Page {
                 obj.set("point",0)
                 obj.save().then((o:KiiObject)=>{
                     alert("投稿しました")
+                    window.history.back()
                 })
             },
         });
