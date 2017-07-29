@@ -234,6 +234,7 @@ var TroublePage = (function () {
                 _this.app.showPage('second/1234');
             },
             send: function () {
+                _this.playAudio();
                 _this.ractive.push("list", { key: 1, value: _this.ractive.get("text") });
                 _this.ractive.set("text", "");
                 setTimeout(function () {
@@ -255,6 +256,12 @@ var TroublePage = (function () {
         ];
         var ansewer = reserveList[Math.floor(Math.random() * reserveList.length + 1)];
         return ansewer;
+    };
+    TroublePage.prototype.playAudio = function () {
+        var num = Math.floor(Math.random() * 4);
+        var audio = new Audio();
+        audio.src = "./voice/trouble" + num + ".mp3";
+        audio.play();
     };
     return TroublePage;
 }());
