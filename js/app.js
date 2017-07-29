@@ -15,7 +15,21 @@ var TopPage = (function () {
     return TopPage;
 }());
 /// <reference path="./kii.d.ts"/>
-/// <reference path="./app.ts"/>
+var APP_ID = 'orueuntaxbsi';
+var APP_KEY = 'c681148710d045fe9ad1bc94f4a209b0';
+var Application = (function () {
+    function Application() {
+    }
+    Application.prototype.start = function () {
+        Kii.initializeWithSite(APP_ID, APP_KEY, KiiSite.JP);
+    };
+    Application.prototype.showPage = function (page) {
+        this.router.navigate(page, { trigger: true });
+    };
+    return Application;
+}());
+/// <reference path="./kii.d.ts"/>
+/// <reference path="./Application.ts"/>
 var LoginPage = (function () {
     function LoginPage(app) {
         this.app = app;
@@ -30,7 +44,7 @@ var LoginPage = (function () {
                 var password = _this.ractive.get("password");
                 KiiUser.authenticate(email, password).then(function (theUser) {
                     alert("ログインしました");
-                    _this.app.showPage("");
+                    _this.app.showPage("newuser");
                 })["catch"](function (error) {
                     var theUser = error.target;
                     var errorString = error.message;
@@ -130,20 +144,6 @@ var PostPage = (function () {
         });
     };
     return PostPage;
-}());
-/// <reference path="./kii.d.ts"/>
-var APP_ID = 'orueuntaxbsi';
-var APP_KEY = 'c681148710d045fe9ad1bc94f4a209b0';
-var Application = (function () {
-    function Application() {
-    }
-    Application.prototype.start = function () {
-        Kii.initializeWithSite(APP_ID, APP_KEY, KiiSite.JP);
-    };
-    Application.prototype.showPage = function (page) {
-        this.router.navigate(page, { trigger: true });
-    };
-    return Application;
 }());
 /// <reference path="./ractive.d.ts"/>
 /// <reference path="./Page.ts"/>

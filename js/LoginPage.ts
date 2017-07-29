@@ -1,5 +1,5 @@
 /// <reference path="./kii.d.ts"/>
-/// <reference path="./app.ts"/>
+/// <reference path="./Application.ts"/>
 class LoginPage implements Page {
     app : Application;
     ractive : Ractive;
@@ -19,7 +19,7 @@ class LoginPage implements Page {
                 KiiUser.authenticate(email, password).then(
                 (theUser : KiiUser) => {
                     alert("ログインしました")
-                    this.app.showPage("")
+                    this.app.showPage("newuser")
                 }
                 ).catch(
                     function(error) {
