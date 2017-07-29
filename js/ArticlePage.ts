@@ -27,6 +27,7 @@ class ArticlePage implements Page {
                 })
             },
             addPoint : () => {
+                this.playPointVoice();
                 this.addPoint();
             },
         });
@@ -53,7 +54,6 @@ class ArticlePage implements Page {
         this.obj.set("point", this.obj.get<number>("point") + 1);
         this.obj.saveAllFields(null, false).then((o : KiiObject) => {
             this.ractive.set('point', o.get("point"));
-            this.playPointVoice();
         }).catch((e : any) => {
             console.log(e);
         });
