@@ -15,15 +15,19 @@ class ArticlePage implements Page {
             el : '#container',
             template : '#ArticleTemplate',
             sendComment : () => {
+                var comment = this.ractive.get("comment");
+                if (comment.trim().length == 0) {
+                    return false;
+                }
                 this.playSendVoice();
-                var comment = this.ractive.get("comment")
 
                 var obj = Kii.bucketWithName("comment").createObject()
                 obj.set("parent",this.id)
                 
                 obj.set("comment",comment)
                 obj.save().then((o:KiiObject)=>{
-                    window.history.back()
+                    this.ractive.set('comment', '');
+                    this.ractive.splice('list', 0, 0, o);
                 })
             },
             addPoint : () => {

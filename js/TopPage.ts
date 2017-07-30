@@ -34,6 +34,9 @@ class TopPage implements Page {
             },
             showArticle : (o:KiiObject) =>{
                 this.app.showPage("article/"+o.getID())
+            },
+            showList : (o:KiiObject) =>{
+                this.app.showPage("list")
             }
         });
         var bucket = Kii.bucketWithName("anger")
@@ -42,6 +45,13 @@ class TopPage implements Page {
         allQuery.sortByDesc("point")
         bucket.executeQuery(allQuery).then((v:any[])=>{
             this.ractive.set("list",v[1])
+        })
+        var bucket = Kii.bucketWithName("anger")
+        var allQuery:KiiQuery = KiiQuery.queryWithClause(null);
+        allQuery.setLimit(3)
+        allQuery.sortByDesc("_created")
+        bucket.executeQuery(allQuery).then((v:any[])=>{
+            this.ractive.set("list2",v[1])
         })
     }
 }

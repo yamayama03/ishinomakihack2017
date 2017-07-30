@@ -43,7 +43,7 @@ class TroublePage implements Page {
     	,"そんな上司も漏らしたことあるんだよ、人間だもの"
     	,"ふんふふ━━（　´_ゝ｀）━━ん"
     	];
-    	var ansewer = reserveList[Math.floor( Math.random() * reserveList.length + 1 )];
+    	var ansewer = reserveList[Math.floor( Math.random() * reserveList.length)];
     	return ansewer;
     }
 

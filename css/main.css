@@ -17,11 +17,13 @@
 }
 
 .button {
-    background-color: #4285f4;
+    background-color: #FF99CC;
     border-style: none;
     color : white;
     padding: 4px 8px;
     margin: 4px;
+    height: 48px;
+    font-size: 18px;
 }
 
 .match_width {
@@ -46,6 +48,7 @@
 
 .top header {
     positon: relative;
+    height: 32px;
 }
 .top h1 {
     display: inline-block;
@@ -62,6 +65,24 @@
 .top .card h2 {
     font-size: 16px;
     margin-bottom: 16px;
+}
+
+.trouble_talk img {
+    display: inline-block;
+}
+
+.trouble_talk .text {
+    display: inline-block;
+    width: calc(100% - 64px);
+    vertical-align: top;
+}
+
+.trouble_talk .text_right {
+    display: inline-block;
+    width: calc(100% - 64px);
+    vertical-align: top;
+    text-align: right;
+    font-size: 16px;
 }
 
 
@@ -88,7 +109,6 @@ table td {
 }
 
 .btn1 {
-    width:100px;
     height:50px;
     background-color: #FF99CC;
     box-shadow: 2px 2px 3px 1px #CC66FF;
@@ -112,7 +132,7 @@ table td {
 }
 
 .btn2 {
-    width:100px;
+    margin-left: 4px;
     height:50px;
     background-color: #000;
     box-shadow: 2px 2px 3px 1px #CC66FF;
@@ -136,10 +156,22 @@ table td {
 }
 
 div.center {
-text-align : center ;
+    text-align : center ;
+}
+
+.top .trouble_img {
+    margin-left: -16px;
 }
 
 img.trouble_img {
-width=200px ;
-height=auto ;
+    width=200px ;
+    height=auto ;
+}
+
+input.comment {
+    line-height:5em;
+}
+
+input.text {
+    line-height:20em;
 }

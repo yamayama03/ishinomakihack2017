@@ -32,6 +32,9 @@ var TopPage = (function () {
             },
             showArticle: function (o) {
                 _this.app.showPage("article/" + o.getID());
+            },
+            showList: function (o) {
+                _this.app.showPage("list");
             }
         });
         var bucket = Kii.bucketWithName("anger");
@@ -40,6 +43,13 @@ var TopPage = (function () {
         allQuery.sortByDesc("point");
         bucket.executeQuery(allQuery).then(function (v) {
             _this.ractive.set("list", v[1]);
+        });
+        var bucket = Kii.bucketWithName("anger");
+        var allQuery = KiiQuery.queryWithClause(null);
+        allQuery.setLimit(3);
+        allQuery.sortByDesc("_created");
+        bucket.executeQuery(allQuery).then(function (v) {
+            _this.ractive.set("list2", v[1]);
         });
     };
     return TopPage;
@@ -152,7 +162,16 @@ var ListPage = (function () {
             template: '#ListTemplate',
             showNext: function () {
                 _this.app.showPage('second/1234');
+            },
+            showArticle: function (o) {
+                _this.app.showPage("article/" + o.getID());
             }
+        });
+        var bucket = Kii.bucketWithName("anger");
+        var allQuery = KiiQuery.queryWithClause(null);
+        allQuery.sortByDesc("point");
+        bucket.executeQuery(allQuery).then(function (v) {
+            _this.ractive.set("list", v[1]);
         });
     };
     return ListPage;
@@ -169,13 +188,17 @@ var ArticlePage = (function () {
             el: '#container',
             template: '#ArticleTemplate',
             sendComment: function () {
-                _this.playSendVoice();
                 var comment = _this.ractive.get("comment");
+                if (comment.trim().length == 0) {
+                    return false;
+                }
+                _this.playSendVoice();
                 var obj = Kii.bucketWithName("comment").createObject();
                 obj.set("parent", _this.id);
                 obj.set("comment", comment);
                 obj.save().then(function (o) {
-                    window.history.back();
+                    _this.ractive.set('comment', '');
+                    _this.ractive.splice('list', 0, 0, o);
                 });
             },
             addPoint: function () {
@@ -264,7 +287,7 @@ var TroublePage = (function () {
             "そんな上司も漏らしたことあるんだよ、人間だもの",
             "ふんふふ━━（　´_ゝ｀）━━ん"
         ];
-        var ansewer = reserveList[Math.floor(Math.random() * reserveList.length + 1)];
+        var ansewer = reserveList[Math.floor(Math.random() * reserveList.length)];
         return ansewer;
     };
     TroublePage.prototype.playAudio = function () {
@@ -288,6 +311,13 @@ var PostPage = (function () {
             showNext: function () {
                 var title = _this.ractive.get("title");
                 var text = _this.ractive.get("text");
+                // input check
+                if (title.trim().length == 0) {
+                    return false;
+                }
+                if (text.trim().length == 0) {
+                    return false;
+                }
                 var obj = Kii.bucketWithName("anger").createObject();
                 obj.set("title", title);
                 obj.set("text", text);
