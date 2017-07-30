@@ -10,6 +10,7 @@ declare class Ractive {
     unshift(keypath : string, item : any);
     shift(keypath : string, item : any);
     splice(keypath : string, index : number, count : number);
+    splice(keypath : string, index : number, count : number, obj : any);
     observe(params : any);
     observe(keypath : string, func : any);
     update();
