@@ -112,7 +112,7 @@
       <img class="back" src="./img/arrow_back.png" on-click="@this.back()">		
       <h1>{{title}}</h1>		
     </header>   
-    <p>{{text}}</p><br>
+    <pre style="white-space:normal;font-size:16px;">{{text}}</pre><br>
     {{#if point <= 5}}
         <div class=left><img src = "./img/meter_1.png">{{point}}</div>
          {{elseif point > 5 && point <= 10}}
