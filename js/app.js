@@ -197,7 +197,8 @@ var ArticlePage = (function () {
                 obj.set("parent", _this.id);
                 obj.set("comment", comment);
                 obj.save().then(function (o) {
-                    window.history.back();
+                    _this.ractive.set('comment', '');
+                    _this.ractive.splice('list', 0, 0, o);
                 });
             },
             addPoint: function () {

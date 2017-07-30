@@ -26,7 +26,8 @@ class ArticlePage implements Page {
                 
                 obj.set("comment",comment)
                 obj.save().then((o:KiiObject)=>{
-                    window.history.back()
+                    this.ractive.set('comment', '');
+                    this.ractive.splice('list', 0, 0, o);
                 })
             },
             addPoint : () => {
